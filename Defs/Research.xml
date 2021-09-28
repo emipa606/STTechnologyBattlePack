@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ResearchTabDef>
+    <defName>STTech</defName>
+    <label>ST科技</label>
+  </ResearchTabDef>
+  <ResearchProjectDef Name="STTechBase" Abstract="True">
+    <tab>STTech</tab>
+    <techLevel>Spacer</techLevel>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <requiredResearchFacilities>
+      <li>MultiAnalyzer</li>
+    </requiredResearchFacilities>
+  </ResearchProjectDef>
+  <ResearchProjectDef ParentName="STTechBase">
+    <defName>STPowerShield</defName>
+    <label>能量盾科技</label>
+    <description>让你可以制造ST型号的单人护盾,可以抵挡任何攻击并且不会阻止使用者进行射击.</description>
+    <baseCost>6500</baseCost>
+    <prerequisites>
+      <li>ShipBasics</li>
+    </prerequisites>
+    <researchViewX>2.5</researchViewX>
+    <researchViewY>1.5</researchViewY>
+  </ResearchProjectDef>
+  <ResearchProjectDef ParentName="STTechBase">
+    <defName>STPTeamShield</defName>
+    <label>团体盾科技</label>
+    <description>学习仿制庇佑者护盾,可以同时保护多名队友.</description>
+    <baseCost>10000</baseCost>
+    <prerequisites>
+      <li>ShipBasics</li>
+    </prerequisites>
+    <researchViewX>2.5</researchViewX>
+    <researchViewY>3.5</researchViewY>
+  </ResearchProjectDef>
+  <ResearchProjectDef ParentName="STTechBase">
+    <defName>STGrenadeBelt</defName>
+    <label>手雷腰带</label>
+    <description>学习制作手雷腰带，在使用其他武器的时候可以同时投掷雷管.</description>
+    <baseCost>4000</baseCost>
+    <prerequisites>
+      <li>ShipBasics</li>
+    </prerequisites>
+    <researchViewX>1.5</researchViewX>
+    <researchViewY>2.5</researchViewY>
+  </ResearchProjectDef>
+  <ResearchProjectDef ParentName="STTechBase">
+    <defName>STBombDot</defName>
+    <label>炮塔信标</label>
+    <description>学习制作炮塔信标，可以召唤投放临时炮塔辅助防御.</description>
+    <baseCost>7000</baseCost>
+    <prerequisites>
+      <li>STGrenadeBelt</li>
+    </prerequisites>
+    <researchViewX>2.5</researchViewX>
+    <researchViewY>2.5</researchViewY>
+  </ResearchProjectDef>
+  <ResearchProjectDef ParentName="STTechBase">
+    <defName>STDomainBelt</defName>
+    <label>能量立场</label>
+    <description>学习制作便携式能量立场，携带者可以在小范围内影响友军或敌人.</description>
+    <baseCost>7000</baseCost>
+    <prerequisites>
+      <li>ShipBasics</li>
+    </prerequisites>
+    <researchViewX>3.5</researchViewX>
+    <researchViewY>2.5</researchViewY>
+  </ResearchProjectDef>
+</Defs>

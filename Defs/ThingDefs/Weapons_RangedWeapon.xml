@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThingDef ParentName="BaseGun">
+    <defName>Gun_DorpDot</defName>
+    <label>炮塔信标发射器</label>
+    <description>一个一次性使用的炮塔坐标发射器，可最多同时召唤10个临时炮塔进行火力压制。</description>
+    <graphicData>
+      <texPath>Things/Item/Equipment/WeaponRanged/RocketLauncher</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>1300</MarketValue>
+      <Mass>5</Mass>
+      <AccuracyTouch>0.6</AccuracyTouch>
+      <AccuracyShort>0.8</AccuracyShort>
+      <AccuracyMedium>0.92</AccuracyMedium>
+      <AccuracyLong>0.88</AccuracyLong>
+      <RangedWeapon_Cooldown>4.5</RangedWeapon_Cooldown>
+    </statBases>
+    <techLevel>Spacer</techLevel>
+    <destroyOnDrop>false</destroyOnDrop>
+    <weaponTags>
+      <li>GunHeavy</li>
+    </weaponTags>
+    <tradeTags>
+      <li>Exotic</li>
+    </tradeTags>
+    <verbs>
+      <li>
+        <verbClass>Verb_ShootOneUse</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <defaultProjectile>Bullet_DorpDot</defaultProjectile>
+        <forcedMissRadius>5.0</forcedMissRadius>
+        <warmupTime>5.0</warmupTime>
+        <range>40</range>
+        <ticksBetweenBurstShots>0</ticksBetweenBurstShots>
+        <burstShotCount>10</burstShotCount>
+        <soundCast>InfernoCannon_Fire</soundCast>
+        <soundCastTail>GunTail_Heavy</soundCastTail>
+        <onlyManualCast>true</onlyManualCast>
+        <stopBurstWithoutLos>false</stopBurstWithoutLos>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+        <muzzleFlashScale>0</muzzleFlashScale>
+      </li>
+    </verbs>
+    <tools>
+      <li>
+        <label>枪管</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>10</power>
+        <cooldownTime>1.9</cooldownTime>
+      </li>
+    </tools>
+  </ThingDef>
+  <!-- 手雷腰带 -->
+  <ThingDef ParentName="BaseBullet">
+    <defName>Bullet_DorpDot</defName>
+    <label>释放信标</label>
+    <thingClass>Myth.Projectile_Beacon</thingClass>
+    <graphicData>
+      <texPath>Things/Projectile/STLight</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <damageDef>Bullet</damageDef>
+      <damageAmountBase>0</damageAmountBase>
+      <explosionRadius>1.1</explosionRadius>
+      <explosionDelay>100</explosionDelay>
+      <speed>60</speed>
+      <preExplosionSpawnThingDef>TurretPod</preExplosionSpawnThingDef>
+      <postExplosionSpawnThingDef>STTemporaryTurret</postExplosionSpawnThingDef>
+      <!-- STTemporaryTurret -->
+    </projectile>
+  </ThingDef>
+</Defs>

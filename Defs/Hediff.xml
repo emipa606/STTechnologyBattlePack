@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <HediffDef>
+    <defName>STInfirmity</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>虚弱</label>
+    <description>虚弱</description>
+    <defaultLabelColor>(0.8,0.8,0.8)</defaultLabelColor>
+    <scenarioCanAdd>true</scenarioCanAdd>
+    <maxSeverity>0.01</maxSeverity>
+    <initialSeverity>0.01</initialSeverity>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-1</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <capMods>
+          <li>
+            <capacity>Manipulation</capacity>
+            <offset>-0.1</offset>
+          </li>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.8</setMax>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+  <HediffDef>
+    <defName>STEnergizing</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>激励</label>
+    <description>激励</description>
+    <defaultLabelColor>(0.8,0.8,0.8)</defaultLabelColor>
+    <scenarioCanAdd>true</scenarioCanAdd>
+    <maxSeverity>0.1</maxSeverity>
+    <initialSeverity>0.1</initialSeverity>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-1</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>0.2</offset>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+  <!-- <HediffDef>
+    <defName>STAutohelth</defName>
+    <hediffClass>Hediff_Implant</hediffClass>
+    <label>封护</label>
+    <defaultLabelColor>(0.5,0.8,0.5)</defaultLabelColor>
+    <scenarioCanAdd>true</scenarioCanAdd>
+    <maxSeverity>0.01</maxSeverity>
+    <isBad>false</isBad>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-1</severityPerDay>
+      </li>
+    </comps>
+      <stages>
+        <li>
+		<hediffGivers>
+		<li Class="Myth.HediffGiver_Autohelth">
+		<tickmtb>3</tickmtb>
+		<quality>0.8</quality>
+		<healthcount>1</healthcount>
+		<cure>true</cure>
+		</li>
+		</hediffGivers>
+		</li>
+      </stages>
+  </HediffDef> -->
+  <!-- <HediffDef>
+    <defName>STAutohelthPawn</defName>
+    <hediffClass>Hediff_Implant</hediffClass>
+    <label>养疗</label>
+    <defaultLabelColor>(1,1,1)</defaultLabelColor>
+    <isBad>false</isBad>
+    <stages>
+        <li>
+		<hediffGivers>
+		<li Class="Myth.HediffGiver_Autohelth">
+		<tickmtb>3600</tickmtb>
+		<quality>1</quality>
+		</li>
+		</hediffGivers>
+		</li>
+    </stages>
+  </HediffDef>
+  
+   <HediffDef>
+    <defName>STAutohelthPawnEX</defName>
+    <hediffClass>Hediff_Implant</hediffClass>
+    <label>修复</label>
+    <defaultLabelColor>(1,1,1)</defaultLabelColor>
+    <isBad>false</isBad>
+    <stages>
+        <li>
+		<hediffGivers>
+		<li Class="Myth.HediffGiver_Autohelth">
+		<tickmtb>60</tickmtb>
+		<quality>0.4</quality>
+		<healthcount>1</healthcount>
+		<cure>true</cure>
+		</li>
+		</hediffGivers>
+		</li>
+    </stages>
+  </HediffDef> -->
+</Defs>
