@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- 便携立场 -->
+  <ThingDef ParentName="ApparelBase">
+    <defName>Apparel_DomainBelt</defName>
+    <label>虚弱立场</label>
+    <description>一个便携式的立场释放装置，可致使一定范围内的敌人虚弱.（需要基础的研究能力）</description>
+    <thingClass>Myth.StField</thingClass>
+    <graphicData>
+      <texPath>Things/Pawn/Humanlike/Apparel/DomainBelt</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <tickerType>Normal</tickerType>
+    <techLevel>Spacer</techLevel>
+    <statBases>
+      <Mass>3</Mass>
+      <WorkToMake>65000</WorkToMake>
+      <MarketValue>600</MarketValue>
+    </statBases>
+    <costList>
+      <ComponentIndustrial>10</ComponentIndustrial>
+      <Plasteel>50</Plasteel>
+      <Steel>100</Steel>
+      <Uranium>10</Uranium>
+    </costList>
+    <recipeMaker>
+      <unfinishedThingDef>UnfinishedBelt</unfinishedThingDef>
+      <researchPrerequisite>STDomainBelt</researchPrerequisite>
+      <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+      <workSkill>Crafting</workSkill>
+      <effectWorking>Smith</effectWorking>
+      <soundWorking>Recipe_Machining</soundWorking>
+      <recipeUsers>
+        <li>TableMachining</li>
+      </recipeUsers>
+    </recipeMaker>
+    <thingCategories>
+      <li>Apparel</li>
+    </thingCategories>
+    <apparel>
+      <careIfWornByCorpse>false</careIfWornByCorpse>
+      <bodyPartGroups>
+        <li>Waist</li>
+      </bodyPartGroups>
+      <layers>
+        <li>Belt</li>
+      </layers>
+      <!-- <tags>
+        <li>BeltST</li>
+      </tags> -->
+    </apparel>
+    <comps>
+      <li Class="Myth.CompProperties_SkillLimit">
+        <level>0</level>
+        <skill>Intellectual</skill>
+      </li>
+      <li Class="Myth.CompProperties_StField">
+        <!-- 立场给予的buff -->
+        <buff>STInfirmity</buff>
+        <!-- 立场能量 -->
+        <pointmax>100</pointmax>
+        <!-- 秒恢复量 -->
+        <recoverypointpercheck>1</recoverypointpercheck>
+        <!-- 射程 -->
+        <range>4</range>
+        <!-- 效果给敌人还是自己的 -->
+        <forEnemy>true</forEnemy>
+      </li>
+    </comps>
+  </ThingDef>
+  <ThingDef ParentName="ApparelBase">
+    <defName>Apparel_EnergizingDomainBelt</defName>
+    <label>激励立场</label>
+    <description>一个便携式的立场释放装置，可以激励一定范围内的友军.（需要基础的研究能力）</description>
+    <thingClass>Myth.StField</thingClass>
+    <graphicData>
+      <texPath>Things/Pawn/Humanlike/Apparel/DomainBelt</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <tickerType>Normal</tickerType>
+    <techLevel>Spacer</techLevel>
+    <statBases>
+      <Mass>3</Mass>
+      <WorkToMake>65000</WorkToMake>
+      <MarketValue>600</MarketValue>
+    </statBases>
+    <costList>
+      <ComponentIndustrial>10</ComponentIndustrial>
+      <Plasteel>50</Plasteel>
+      <Steel>100</Steel>
+      <Uranium>10</Uranium>
+    </costList>
+    <recipeMaker>
+      <unfinishedThingDef>UnfinishedBelt</unfinishedThingDef>
+      <researchPrerequisite>STDomainBelt</researchPrerequisite>
+      <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+      <workSkill>Crafting</workSkill>
+      <effectWorking>Smith</effectWorking>
+      <soundWorking>Recipe_Machining</soundWorking>
+      <recipeUsers>
+        <li>TableMachining</li>
+      </recipeUsers>
+    </recipeMaker>
+    <thingCategories>
+      <li>Apparel</li>
+    </thingCategories>
+    <apparel>
+      <careIfWornByCorpse>false</careIfWornByCorpse>
+      <bodyPartGroups>
+        <li>Waist</li>
+      </bodyPartGroups>
+      <layers>
+        <li>Belt</li>
+      </layers>
+      <!-- <tags>
+        <li>BeltST</li>
+      </tags> -->
+    </apparel>
+    <comps>
+      <li Class="Myth.CompProperties_SkillLimit">
+        <level>0</level>
+        <skill>Intellectual</skill>
+      </li>
+      <li Class="Myth.CompProperties_StField">
+        <!-- 立场给予的buff -->
+        <buff>STEnergizing</buff>
+        <!-- 立场能量 -->
+        <pointmax>100</pointmax>
+        <!-- 秒恢复量 -->
+        <recoverypointpercheck>1</recoverypointpercheck>
+        <!-- 射程 -->
+        <range>4</range>
+        <!-- 效果给敌人还是自己的 -->
+        <forEnemy>false</forEnemy>
+      </li>
+    </comps>
+  </ThingDef>
+  <!-- <ThingDef ParentName="ApparelBase">
+    <defName>Apparel_AutohelthDomainBelt</defName>
+		<label>守护立场</label>
+    <description>一个便携式的立场释放装置，可以帮助范围内的友军治疗.（需要基础的研究能力）</description>
+		<thingClass>Myth.StField</thingClass>
+		<graphicData>
+      <texPath>Things/Pawn/Humanlike/Apparel/ShieldBelt/ShieldBelt</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <tickerType>Normal</tickerType>
+    <statBases>
+      <Mass>3</Mass>
+			<WorkToMake>65000</WorkToMake>
+	  <MarketValue>5600</MarketValue>
+    </statBases>
+		<costList>
+			<ComponentIndustrial>6</ComponentIndustrial>
+			<Plasteel>50</Plasteel>
+			<Uranium>5</Uranium>
+		</costList>
+		<recipeMaker>
+			<unfinishedThingDef>UnfinishedBelt</unfinishedThingDef>
+			<researchPrerequisite>STDomainBelt</researchPrerequisite>
+			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Machining</soundWorking>
+			<recipeUsers>
+				<li>TableMachining</li>
+			</recipeUsers>
+		</recipeMaker>
+    <thingCategories>
+      <li>Apparel</li>
+    </thingCategories>
+    <apparel>
+      <careIfWornByCorpse>false</careIfWornByCorpse>
+      <bodyPartGroups>
+        <li>Waist</li>
+      </bodyPartGroups>
+      <layers>
+        <li>Belt</li>
+      </layers>
+      <tags>
+        <li>BeltST</li>
+      </tags>
+    </apparel>
+	  	<comps>
+		<li Class="Myth.CompProperties_SkillLimit">
+			<level>0</level>
+			<skill>Intellectual</skill>
+			</li>
+			<li Class="Myth.CompProperties_StField">
+					
+				<buff>STAutohelth</buff>
+					
+				<pointmax>100</pointmax>
+				
+				<recoverypointpercheck>1</recoverypointpercheck>
+				
+				<range>4</range>
+				
+				<forEnemy>false</forEnemy>
+			</li>
+		</comps>
+  </ThingDef> -->
+</Defs>

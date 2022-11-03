@@ -1,8 +1,7 @@
 using Verse;
 
-namespace Myth
+namespace Myth;
+
+public class Comp_StField : ThingComp
 {
-    public class Comp_StField : ThingComp
-    {
-    }
 }

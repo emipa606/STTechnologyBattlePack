@@ -3,69 +3,48 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 
-namespace Myth
+namespace Myth;
+
+[StaticConstructorOnStartup]
+internal class StField : Apparel
 {
-    [StaticConstructorOnStartup]
-    internal class StField : Apparel
+    private static readonly Material ShieldSparksMat =
+        MaterialPool.MatFrom("Things/Projectile/field", MatBases.LightOverlay);
+
+    public static Texture2D UIOFF = ContentFinder<Texture2D>.Get("UI/FieldOFF");
+
+    public static Texture2D UION = ContentFinder<Texture2D>.Get("UI/FieldON");
+
+    private HediffDef buff;
+    private float currentAngle = Random.Range(0f, 360f);
+
+    public bool forEnemy;
+
+    private bool isactive;
+
+    public float point;
+
+    public float pointmaxo;
+
+    private float range;
+
+    private float recoverypointpercheck;
+
+    private float tick;
+
+    private float transparency = Random.Range(10f, 90f);
+
+    private bool Visiblerange;
+
+    public float pointmax
     {
-        private static readonly Material ShieldSparksMat =
-            MaterialPool.MatFrom("Things/Projectile/field", MatBases.LightOverlay);
-
-        public static Texture2D UIOFF = ContentFinder<Texture2D>.Get("UI/FieldOFF");
-
-        public static Texture2D UION = ContentFinder<Texture2D>.Get("UI/FieldON");
-
-        private HediffDef buff;
-        private float currentAngle = Random.Range(0f, 360f);
-
-        public bool forEnemy;
-
-        private bool isactive;
-
-        public float point;
-
-        public float pointmaxo;
-
-        private float range;
-
-        private float recoverypointpercheck;
-
-        private float tick;
-
-        private float transparency = Random.Range(10f, 90f);
-
-        private bool Visiblerange;
-
-        public float pointmax
+        get
         {
-            get
+            if (pointmaxo != 0f || Wearer == null)
             {
-                if (pointmaxo != 0f || Wearer == null)
-                {
-                    return pointmaxo;
-                }
-
-                var comp = GetComp<Comp_StField>();
-                if (comp.props is CompProperties_StField field)
-                {
-                    buff = field.buff;
-                    forEnemy = field.forEnemy;
-                    range = field.range;
-                    pointmaxo = field.pointmax;
-                    recoverypointpercheck = field.recoverypointpercheck;
-                }
-                else
-                {
-                    Log.Error("Field definition not of type \"FieldThingDef\"");
-                }
-
                 return pointmaxo;
             }
-        }
 
-        public override void SpawnSetup(Map map, bool RE)
-        {
-            base.SpawnSetup(map, RE);
             var comp = GetComp<Comp_StField>();
             if (comp.props is CompProperties_StField field)
             {
@@ -79,25 +58,48 @@ namespace Myth
             {
                 Log.Error("Field definition not of type \"FieldThingDef\"");
             }
+
+            return pointmaxo;
+        }
+    }
+
+    public override void SpawnSetup(Map map, bool RE)
+    {
+        base.SpawnSetup(map, RE);
+        var comp = GetComp<Comp_StField>();
+        if (comp.props is CompProperties_StField field)
+        {
+            buff = field.buff;
+            forEnemy = field.forEnemy;
+            range = field.range;
+            pointmaxo = field.pointmax;
+            recoverypointpercheck = field.recoverypointpercheck;
+        }
+        else
+        {
+            Log.Error("Field definition not of type \"FieldThingDef\"");
+        }
+    }
+
+    public override void Tick()
+    {
+        base.Tick();
+        if (Wearer == null)
+        {
+            point = 0f;
+            return;
         }
 
-        public override void Tick()
+        tick += 1f;
+        if (!(tick >= 100f))
         {
-            base.Tick();
-            if (Wearer == null)
-            {
-                point = 0f;
-                return;
-            }
+            return;
+        }
 
-            tick += 1f;
-            if (!(tick >= 100f))
-            {
-                return;
-            }
-
-            tick = 0f;
-            if (isactive && Wearer != null)
+        tick = 0f;
+        switch (isactive)
+        {
+            case true when Wearer != null:
             {
                 if (Wearer.Dead || Wearer.Downed)
                 {
@@ -114,150 +116,153 @@ namespace Myth
 
                 point = 0f;
                 PowerDown();
+                break;
             }
-            else if (!isactive && Wearer != null)
+            case false when Wearer != null:
             {
                 point += recoverypointpercheck;
                 if (point > pointmax)
                 {
                     point = pointmax;
                 }
+
+                break;
             }
         }
+    }
 
-        private void PowerDown()
+    private void PowerDown()
+    {
+        MoteMaker.ThrowText(new Vector3(Wearer.Position.x + 1f, Wearer.Position.y, Wearer.Position.z + 1f),
+            Wearer.Map, "能量耗尽".Translate(), Color.blue);
+        isactive = false;
+    }
+
+    public bool CheckAndGive()
+    {
+        var allPawnsSpawned = Wearer.Map.mapPawns.AllPawnsSpawned;
+        if (allPawnsSpawned == null)
         {
-            MoteMaker.ThrowText(new Vector3(Wearer.Position.x + 1f, Wearer.Position.y, Wearer.Position.z + 1f),
-                Wearer.Map, "能量耗尽".Translate(), Color.blue);
-            isactive = false;
-        }
-
-        public bool CheckAndGive()
-        {
-            var allPawnsSpawned = Wearer.Map.mapPawns.AllPawnsSpawned;
-            if (allPawnsSpawned == null)
-            {
-                return false;
-            }
-
-            var list = new List<Pawn>();
-            if (forEnemy)
-            {
-                for (var i = 0; i < allPawnsSpawned.Count; i++)
-                {
-                    if (allPawnsSpawned[i].Position.InHorDistOf(Wearer.Position, range) &&
-                        allPawnsSpawned[i].Faction is { IsPlayer: false })
-                    {
-                        list.Add(allPawnsSpawned[i]);
-                    }
-                }
-            }
-            else
-            {
-                for (var j = 0; j < allPawnsSpawned.Count; j++)
-                {
-                    if (allPawnsSpawned[j].Position.InHorDistOf(Wearer.Position, range) &&
-                        allPawnsSpawned[j].Faction is { IsPlayer: true })
-                    {
-                        list.Add(allPawnsSpawned[j]);
-                    }
-                }
-            }
-
-            for (var k = 0; k < list.Count; k++)
-            {
-                var pawn = list[k];
-                if (pawn is { Dead: false })
-                {
-                    HealthUtility.AdjustSeverity(pawn, buff, 0.1f);
-                }
-            }
-
             return false;
         }
 
-        private void Tswitch()
+        var list = new List<Pawn>();
+        if (forEnemy)
         {
-            if (isactive)
+            foreach (var pawn in allPawnsSpawned)
             {
-                isactive = false;
+                if (pawn.Position.InHorDistOf(Wearer.Position, range) &&
+                    pawn.Faction is { IsPlayer: false })
+                {
+                    list.Add(pawn);
+                }
             }
-            else if (point <= 1f)
+        }
+        else
+        {
+            foreach (var pawn in allPawnsSpawned)
             {
-                MoteMaker.ThrowText(new Vector3(Wearer.Position.x + 1f, Wearer.Position.y, Wearer.Position.z + 1f),
-                    Wearer.Map, "立场能量过低无法启动".Translate(), Color.blue);
-            }
-            else
-            {
-                isactive = true;
+                if (pawn.Position.InHorDistOf(Wearer.Position, range) &&
+                    pawn.Faction is { IsPlayer: true })
+                {
+                    list.Add(pawn);
+                }
             }
         }
 
-        public override IEnumerable<Gizmo> GetWornGizmos()
+        for (var k = 0; k < list.Count; k++)
         {
-            if (isactive)
+            var pawn = list[k];
+            if (pawn is { Dead: false })
             {
-                yield return new Command_MouseOver
-                {
-                    action = Tswitch,
-                    mouseOverCallback = OnMouseOverGizmo,
-                    icon = UIOFF,
-                    defaultLabel = "OFF".Translate(),
-                    defaultDesc = "OFF Gizmo".Translate()
-                };
+                HealthUtility.AdjustSeverity(pawn, buff, 0.1f);
             }
-            else
-            {
-                yield return new Command_MouseOver
-                {
-                    action = Tswitch,
-                    mouseOverCallback = OnMouseOverGizmo,
-                    icon = UION,
-                    defaultLabel = "ON".Translate(),
-                    defaultDesc = "ON Gizmo".Translate()
-                };
-            }
+        }
 
-            yield return new Gizmo_StField
+        return false;
+    }
+
+    private void Tswitch()
+    {
+        if (isactive)
+        {
+            isactive = false;
+        }
+        else if (point <= 1f)
+        {
+            MoteMaker.ThrowText(new Vector3(Wearer.Position.x + 1f, Wearer.Position.y, Wearer.Position.z + 1f),
+                Wearer.Map, "立场能量过低无法启动".Translate(), Color.blue);
+        }
+        else
+        {
+            isactive = true;
+        }
+    }
+
+    public override IEnumerable<Gizmo> GetWornGizmos()
+    {
+        if (isactive)
+        {
+            yield return new Command_MouseOver
             {
-                field = this
+                action = Tswitch,
+                mouseOverCallback = OnMouseOverGizmo,
+                icon = UIOFF,
+                defaultLabel = "OFF".Translate(),
+                defaultDesc = "OFF Gizmo".Translate()
+            };
+        }
+        else
+        {
+            yield return new Command_MouseOver
+            {
+                action = Tswitch,
+                mouseOverCallback = OnMouseOverGizmo,
+                icon = UION,
+                defaultLabel = "ON".Translate(),
+                defaultDesc = "ON Gizmo".Translate()
             };
         }
 
-        public override void DrawWornExtras()
+        yield return new Gizmo_StField
         {
-            base.DrawWornExtras();
-            DrawRangeOverlay();
+            field = this
+        };
+    }
+
+    public override void DrawWornExtras()
+    {
+        base.DrawWornExtras();
+        DrawRangeOverlay();
+    }
+
+    private void DrawRangeOverlay()
+    {
+        if (isactive)
+        {
+            var matrix = default(Matrix4x4);
+            matrix.SetTRS(s: new Vector3(range, 1f, range), pos: Wearer.DrawPos + Altitudes.AltIncVect,
+                q: Quaternion.Euler(0f, currentAngle, 0f));
+            UnityEngine.Graphics.DrawMesh(MeshPool.plane20, matrix,
+                FadedMaterialPool.FadedVersionOf(ShieldSparksMat, 0.9f), 0);
+            currentAngle = Random.Range(0f, 360f);
+            transparency = Random.Range(10f, 80f);
         }
 
-        private void DrawRangeOverlay()
+        if (!Visiblerange)
         {
-            if (isactive)
-            {
-                var matrix = default(Matrix4x4);
-                matrix.SetTRS(s: new Vector3(range, 1f, range), pos: Wearer.DrawPos + Altitudes.AltIncVect,
-                    q: Quaternion.Euler(0f, currentAngle, 0f));
-                UnityEngine.Graphics.DrawMesh(MeshPool.plane20, matrix,
-                    FadedMaterialPool.FadedVersionOf(ShieldSparksMat, 0.9f), 0);
-                currentAngle = Random.Range(0f, 360f);
-                transparency = Random.Range(10f, 80f);
-            }
-
-            if (!Visiblerange)
-            {
-                return;
-            }
-
-            Visiblerange = false;
-            if (range <= GenRadial.MaxRadialPatternRadius)
-            {
-                GenDraw.DrawRadiusRing(Wearer.Position, range);
-            }
+            return;
         }
 
-        private void OnMouseOverGizmo()
+        Visiblerange = false;
+        if (range <= GenRadial.MaxRadialPatternRadius)
         {
-            Visiblerange = true;
+            GenDraw.DrawRadiusRing(Wearer.Position, range);
         }
+    }
+
+    private void OnMouseOverGizmo()
+    {
+        Visiblerange = true;
     }
 }

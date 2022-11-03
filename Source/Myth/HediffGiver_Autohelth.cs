@@ -3,45 +3,37 @@ using System.Collections.Generic;
 using RimWorld;
 using Verse;
 
-namespace Myth
+namespace Myth;
+
+internal class HediffGiver_Autohelth : HediffGiver
 {
-    internal class HediffGiver_Autohelth : HediffGiver
+    public new bool canAffectAnyLivePart;
+
+    public bool cure;
+
+    public float healthcount;
+
+    public new HediffDef hediff = HediffDefOf.Anesthetic;
+
+    public new List<BodyPartDef> partsToAffect;
+
+    public float quality;
+
+    private int tick;
+    public int tickmtb;
+
+    public override void OnIntervalPassed(Pawn pawn, Hediff hediffDef)
     {
-        public new bool canAffectAnyLivePart;
-
-        public bool cure;
-
-        public float healthcount;
-
-        public new HediffDef hediff = HediffDefOf.Anesthetic;
-
-        public new List<BodyPartDef> partsToAffect;
-
-        public float quality;
-
-        private int tick;
-        public int tickmtb;
-
-        public override void OnIntervalPassed(Pawn pawn, Hediff hediffDef)
+        Log.Message(hediff.LabelCap);
+        if (pawn == null || pawn.Dead || pawn.Map == null)
         {
-            Log.Message(hediff.LabelCap);
-            if (partsToAffect == null)
-            {
-                Log.Message("a");
-            }
+            return;
+        }
 
-            if (canAffectAnyLivePart)
-            {
-                Log.Message("b");
-            }
-
-            if (pawn == null || pawn.Dead || pawn.Map == null)
-            {
-                return;
-            }
-
-            tick++;
-            if (tickmtb == -1)
+        tick++;
+        switch (tickmtb)
+        {
+            case -1:
             {
                 for (var i = 0; i < pawn.health.hediffSet.hediffs.Count; i++)
                 {
@@ -66,8 +58,10 @@ namespace Myth
                         }
                     }
                 }
+
+                break;
             }
-            else if (tickmtb >= 0 && tick >= tickmtb)
+            case >= 0 when tick >= tickmtb:
             {
                 for (var j = 0; j < pawn.health.hediffSet.hediffs.Count; j++)
                 {
@@ -83,12 +77,14 @@ namespace Myth
                         (pawn.health.hediffSet.hediffs[j] as Hediff_Injury)?.Heal(healthcount);
                     }
                 }
-            }
 
-            if (tick > tickmtb)
-            {
-                tick = 0;
+                break;
             }
+        }
+
+        if (tick > tickmtb)
+        {
+            tick = 0;
         }
     }
 }

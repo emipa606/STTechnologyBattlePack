@@ -1,17 +1,16 @@
 using RimWorld;
 using Verse;
 
-namespace Myth
+namespace Myth;
+
+public class CompProperties_SkillLimit : CompProperties
 {
-    public class CompProperties_SkillLimit : CompProperties
+    public float level;
+
+    public SkillDef skill;
+
+    public CompProperties_SkillLimit()
     {
-        public float level;
-
-        public SkillDef skill;
-
-        public CompProperties_SkillLimit()
-        {
-            compClass = typeof(CompSkillLimit);
-        }
+        compClass = typeof(CompSkillLimit);
     }
 }

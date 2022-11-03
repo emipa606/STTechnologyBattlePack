@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- 手雷腰带 -->
+  <ThingDef ParentName="ApparelBase">
+    <defName>Apparel_FragGrenadeBelt</defName>
+    <label>手雷腰带</label>
+    <description>一条手雷腰带，可以每隔一段时间提供一个手雷，最多可存储6个，发射的精度与使用者的射击能力有关(需要拥有有7级的射击能力)</description>
+    <thingClass>Myth.GrenadeBelt</thingClass>
+    <graphicData>
+      <texPath>Things/Pawn/Humanlike/Apparel/Apparel_FragGrenadeBelt</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <tickerType>Normal</tickerType>
+    <techLevel>Spacer</techLevel>
+    <statBases>
+      <Mass>2.5</Mass>
+      <MarketValue>1000</MarketValue>
+      <WorkToMake>66000</WorkToMake>
+    </statBases>
+    <costList>
+      <Weapon_GrenadeFrag>1</Weapon_GrenadeFrag>
+      <ComponentSpacer>5</ComponentSpacer>
+      <ComponentIndustrial>10</ComponentIndustrial>
+      <Plasteel>20</Plasteel>
+      <Uranium>10</Uranium>
+    </costList>
+    <recipeMaker>
+      <unfinishedThingDef>UnfinishedBelt</unfinishedThingDef>
+      <researchPrerequisite>STGrenadeBelt</researchPrerequisite>
+      <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+      <workSkill>Crafting</workSkill>
+      <effectWorking>Smith</effectWorking>
+      <soundWorking>Recipe_Machining</soundWorking>
+      <recipeUsers>
+        <li>TableMachining</li>
+      </recipeUsers>
+    </recipeMaker>
+    <thingCategories>
+      <li>Apparel</li>
+    </thingCategories>
+    <apparel>
+      <careIfWornByCorpse>false</careIfWornByCorpse>
+      <bodyPartGroups>
+        <li>Waist</li>
+      </bodyPartGroups>
+      <layers>
+        <li>Belt</li>
+      </layers>
+      <!-- <tags>
+        <li>BeltST</li>
+      </tags> -->
+    </apparel>
+    <comps>
+      <li Class="Myth.CompProperties_SkillLimit">
+        <level>7</level>
+        <skill>Shooting</skill>
+      </li>
+      <li Class="Myth.CompProperties_GrenadeBelt">
+        <!-- 发射的子弹 -->
+        <project>Proj_GrenadeFrag</project>
+        <!-- 射程 -->
+        <range>15</range>
+        <!-- 冷却 -->
+        <CooldownTicks>60</CooldownTicks>
+        <!-- 弹药量 -->
+        <armo>10</armo>
+        <!-- 恢复时间 -->
+        <restperticks>600</restperticks>
+      </li>
+    </comps>
+  </ThingDef>
+  <ThingDef ParentName="ApparelBase">
+    <defName>Apparel_MolotovGrenadeBelt</defName>
+    <label>燃烧瓶腰带</label>
+    <description>一条燃烧瓶腰带，可以每隔一段时间提供一个燃烧瓶，最多可存储6个，发射的精度与使用者的射击能力有关(需要拥有有5级的射击能力)</description>
+    <thingClass>Myth.GrenadeBelt</thingClass>
+    <graphicData>
+      <texPath>Things/Pawn/Humanlike/Apparel/Apparel_MolotovGrenadeBelt</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <tickerType>Normal</tickerType>
+    <techLevel>Spacer</techLevel>
+    <statBases>
+      <Mass>2.5</Mass>
+      <MarketValue>1000</MarketValue>
+      <WorkToMake>65000</WorkToMake>
+    </statBases>
+    <costList>
+      <Weapon_GrenadeMolotov>1</Weapon_GrenadeMolotov>
+      <ComponentSpacer>5</ComponentSpacer>
+      <ComponentIndustrial>10</ComponentIndustrial>
+      <Plasteel>20</Plasteel>
+      <Uranium>10</Uranium>
+    </costList>
+    <recipeMaker>
+      <unfinishedThingDef>UnfinishedBelt</unfinishedThingDef>
+      <researchPrerequisite>STGrenadeBelt</researchPrerequisite>
+      <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+      <workSkill>Crafting</workSkill>
+      <effectWorking>Smith</effectWorking>
+      <soundWorking>Recipe_Machining</soundWorking>
+      <recipeUsers>
+        <li>TableMachining</li>
+      </recipeUsers>
+    </recipeMaker>
+    <thingCategories>
+      <li>Apparel</li>
+    </thingCategories>
+    <apparel>
+      <careIfWornByCorpse>false</careIfWornByCorpse>
+      <bodyPartGroups>
+        <li>Waist</li>
+      </bodyPartGroups>
+      <layers>
+        <li>Belt</li>
+      </layers>
+      <!-- <tags>
+        <li>BeltST</li>
+      </tags> -->
+    </apparel>
+    <comps>
+      <li Class="Myth.CompProperties_SkillLimit">
+        <level>5</level>
+        <skill>Shooting</skill>
+      </li>
+      <li Class="Myth.CompProperties_GrenadeBelt">
+        <!-- 发射的子弹 -->
+        <project>Proj_GrenadeMolotov</project>
+        <!-- 射程 -->
+        <range>15</range>
+        <!-- 冷却 -->
+        <CooldownTicks>0</CooldownTicks>
+        <!-- 弹药量 -->
+        <armo>7</armo>
+        <!-- 恢复时间 -->
+        <restperticks>500</restperticks>
+      </li>
+    </comps>
+  </ThingDef>
+  <ThingDef ParentName="ApparelBase">
+    <defName>Apparel_EMPGrenadeBelt</defName>
+    <label>EMP手雷腰带</label>
+    <description>一条EMP手雷腰带，可以每隔一段时间提供一个EMP手雷，最多可存储6个，发射的精度与使用者的射击能力有关(需要拥有有3级的射击能力)</description>
+    <thingClass>Myth.GrenadeBelt</thingClass>
+    <graphicData>
+      <texPath>Things/Pawn/Humanlike/Apparel/Apparel_EMPGrenadeBelt</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <tickerType>Normal</tickerType>
+    <techLevel>Spacer</techLevel>
+    <statBases>
+      <Mass>2.5</Mass>
+      <MarketValue>1000</MarketValue>
+      <WorkToMake>65000</WorkToMake>
+    </statBases>
+    <costList>
+      <Weapon_GrenadeEMP>1</Weapon_GrenadeEMP>
+      <ComponentSpacer>5</ComponentSpacer>
+      <ComponentIndustrial>10</ComponentIndustrial>
+      <Plasteel>20</Plasteel>
+      <Uranium>10</Uranium>
+    </costList>
+    <recipeMaker>
+      <unfinishedThingDef>UnfinishedBelt</unfinishedThingDef>
+      <researchPrerequisite>STGrenadeBelt</researchPrerequisite>
+      <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+      <workSkill>Crafting</workSkill>
+      <effectWorking>Smith</effectWorking>
+      <soundWorking>Recipe_Machining</soundWorking>
+      <recipeUsers>
+        <li>TableMachining</li>
+      </recipeUsers>
+    </recipeMaker>
+    <thingCategories>
+      <li>Apparel</li>
+    </thingCategories>
+    <apparel>
+      <careIfWornByCorpse>false</careIfWornByCorpse>
+      <bodyPartGroups>
+        <li>Waist</li>
+      </bodyPartGroups>
+      <layers>
+        <li>Belt</li>
+      </layers>
+      <!-- <tags>
+        <li>BeltST</li>
+      </tags> -->
+    </apparel>
+    <comps>
+      <li Class="Myth.CompProperties_SkillLimit">
+        <level>3</level>
+        <skill>Shooting</skill>
+      </li>
+      <li Class="Myth.CompProperties_GrenadeBelt">
+        <!-- 发射的子弹 -->
+        <project>Proj_GrenadeEMP</project>
+        <!-- 射程 -->
+        <range>15</range>
+        <!-- 冷却 -->
+        <CooldownTicks>60</CooldownTicks>
+        <!-- 弹药量 -->
+        <armo>10</armo>
+        <!-- 恢复时间 -->
+        <restperticks>800</restperticks>
+      </li>
+    </comps>
+  </ThingDef>
+</Defs>

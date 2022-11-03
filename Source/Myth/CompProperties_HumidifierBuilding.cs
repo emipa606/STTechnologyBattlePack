@@ -1,21 +1,20 @@
 using Verse;
 
-namespace Myth
+namespace Myth;
+
+public class CompProperties_HumidifierBuilding : CompProperties
 {
-    public class CompProperties_HumidifierBuilding : CompProperties
+    public float cblue;
+
+    public float cgreen;
+
+    public float cred;
+    public HediffDef hediffDef;
+
+    public float radius;
+
+    public CompProperties_HumidifierBuilding()
     {
-        public float cblue;
-
-        public float cgreen;
-
-        public float cred;
-        public HediffDef hediffDef;
-
-        public float radius;
-
-        public CompProperties_HumidifierBuilding()
-        {
-            compClass = typeof(Comp_HumidifierBuilding);
-        }
+        compClass = typeof(Comp_HumidifierBuilding);
     }
 }

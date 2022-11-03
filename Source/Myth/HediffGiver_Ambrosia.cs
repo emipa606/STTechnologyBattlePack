@@ -1,16 +1,15 @@
 using Verse;
 
-namespace Myth
+namespace Myth;
+
+[StaticConstructorOnStartup]
+internal class HediffGiver_Ambrosia : HediffGiver
 {
-    [StaticConstructorOnStartup]
-    internal class HediffGiver_Ambrosia : HediffGiver
+    public override void OnIntervalPassed(Pawn pawn, Hediff hediffDef)
     {
-        public override void OnIntervalPassed(Pawn pawn, Hediff hediffDef)
+        if (hediffDef != null && pawn.ageTracker.AgeBiologicalYears > 20)
         {
-            if (hediffDef != null && pawn.ageTracker.AgeBiologicalYears > 20)
-            {
-                pawn.ageTracker.AgeBiologicalTicks = pawn.ageTracker.AgeBiologicalTicks - 3600000;
-            }
+            pawn.ageTracker.AgeBiologicalTicks -= 3600000;
         }
     }
 }
