@@ -9,7 +9,7 @@ namespace Myth;
 [StaticConstructorOnStartup]
 internal class GrenadeBelt : Apparel
 {
-    public static Texture2D lunch = ContentFinder<Texture2D>.Get("UI/Lunch");
+    public static readonly Texture2D lunch = ContentFinder<Texture2D>.Get("UI/Lunch");
 
     private readonly TargetingParameters tgp = new TargetingParameters();
 
@@ -122,7 +122,7 @@ internal class GrenadeBelt : Apparel
         yield return new Command_Lunchgrenade
         {
             targetingParams = tgp,
-            action = delegate(LocalTargetInfo target) { Lunch(Wearer, target, out var _)?.Invoke(); },
+            action = delegate(LocalTargetInfo target) { Lunch(Wearer, target)?.Invoke(); },
             mouseOverCallback = OnMouseOverGizmo,
             icon = lunch,
             defaultLabel = "使用挂件".Translate(),
@@ -154,9 +154,8 @@ internal class GrenadeBelt : Apparel
         }
     }
 
-    private Action Lunch(Pawn pawn, LocalTargetInfo target, out string failStr)
+    private Action Lunch(Pawn pawn, LocalTargetInfo target)
     {
-        failStr = "";
         Action result = null;
         if (pawn.skills.GetSkill(SkillDefOf.Shooting) == null)
         {
@@ -198,12 +197,12 @@ internal class GrenadeBelt : Apparel
             }
             else
             {
-                failStr = "OutOfAmmo".Translate();
+                "OutOfAmmo".Translate();
             }
         }
         else
         {
-            failStr = "OutOfRange".Translate();
+            "OutOfRange".Translate();
         }
 
         return result;

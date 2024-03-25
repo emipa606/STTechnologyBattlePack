@@ -163,7 +163,7 @@ public class Thinkingshield : Apparel
             {
                 case Pawn:
                 {
-                    if (dinfo.Weapon is { Verbs: { } } && dinfo.Weapon.Verbs.Count != 0)
+                    if (dinfo.Weapon is { Verbs: not null } && dinfo.Weapon.Verbs.Count != 0)
                     {
                         var intVec = dinfo.Instigator.Position + GenRadial.RadialPattern[num];
                         var projectile = (Projectile)GenSpawn.Spawn(dinfo.Weapon.Verbs[0].defaultProjectile, intVec,
@@ -206,7 +206,7 @@ public class Thinkingshield : Apparel
 
     private void Break()
     {
-        SoundDefOf.EnergyShield_Broken.PlayOneShot(new TargetInfo(Wearer.Position, Wearer.Map));
+        SoundDef.Named("EnergyShield_Broken").PlayOneShot(new TargetInfo(Wearer.Position, Wearer.Map));
         FleckMaker.Static(Wearer.TrueCenter(), Wearer.Map, FleckDefOf.ExplosionFlash, 12f);
         for (var i = 0; i < 6; i++)
         {

@@ -7,13 +7,12 @@ namespace Myth;
 
 internal class HediffGiver_Autohelth : HediffGiver
 {
+    public new readonly HediffDef hediff = HediffDefOf.Anesthetic;
     public new bool canAffectAnyLivePart;
 
     public bool cure;
 
     public float healthcount;
-
-    public new HediffDef hediff = HediffDefOf.Anesthetic;
 
     public new List<BodyPartDef> partsToAffect;
 
@@ -63,6 +62,7 @@ internal class HediffGiver_Autohelth : HediffGiver
             }
             case >= 0 when tick >= tickmtb:
             {
+                // ReSharper disable once ForCanBeConvertedToForeach
                 for (var j = 0; j < pawn.health.hediffSet.hediffs.Count; j++)
                 {
                     if (!pawn.health.hediffSet.hediffs[j].IsTended() &&

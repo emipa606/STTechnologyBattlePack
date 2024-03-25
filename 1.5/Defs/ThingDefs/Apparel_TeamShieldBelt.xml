@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- 团体护盾 -->
+  <ThingDef ParentName="ApparelBase">
+    <defName>Apparel_TeamShieldBelt</defName>
+    <label>伪制庇佑者护盾</label>
+    <description>一个可释放大型护盾的腰带,由于为了使内部成员可以向外射击，无法拦截下所有的攻击.(需要拥有有15级的研究能力)</description>
+    <thingClass>Myth.MassShield</thingClass>
+    <graphicData>
+      <texPath>Things/Pawn/Humanlike/Apparel/ShieldBelt/ShieldBelt</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <tickerType>Normal</tickerType>
+    <techLevel>Spacer</techLevel>
+    <statBases>
+      <Mass>3</Mass>
+      <MarketValue>3000</MarketValue>
+      <WorkToMake>65000</WorkToMake>
+    </statBases>
+    <costList>
+      <ComponentIndustrial>13</ComponentIndustrial>
+      <Plasteel>70</Plasteel>
+      <Uranium>15</Uranium>
+    </costList>
+    <recipeMaker>
+      <unfinishedThingDef>UnfinishedBelt</unfinishedThingDef>
+      <researchPrerequisite>STPTeamShield</researchPrerequisite>
+      <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+      <workSkill>Crafting</workSkill>
+      <effectWorking>Smith</effectWorking>
+      <soundWorking>Recipe_Machining</soundWorking>
+      <recipeUsers>
+        <li>TableMachining</li>
+      </recipeUsers>
+    </recipeMaker>
+    <thingCategories>
+      <li>Apparel</li>
+    </thingCategories>
+    <apparel>
+      <careIfWornByCorpse>false</careIfWornByCorpse>
+      <bodyPartGroups>
+        <li>Waist</li>
+      </bodyPartGroups>
+      <layers>
+        <li>Belt</li>
+      </layers>
+    </apparel>
+    <comps>
+      <li Class="Myth.CompProperties_SkillLimit">
+        <level>15</level>
+        <skill>Intellectual</skill>
+      </li>
+      <li Class="Myth.CompProperties_MassShield">
+        <!-- 恢复冷却 -->
+        <restticks>300</restticks>
+        <!-- 护盾能量 -->
+        <pointmax>1000</pointmax>
+        <!-- 秒恢复量 -->
+        <restpertick>1</restpertick>
+        <!-- 拦截间隔 -->
+        <ticktoblock>2</ticktoblock>
+        <!-- 射程 -->
+        <range>4</range>
+        <!-- 每点能量吸收的伤害 -->
+        <pointperdamage>1</pointperdamage>
+      </li>
+    </comps>
+  </ThingDef>
+  <ThingDef ParentName="ApparelBase">
+    <defName>Apparel_TeamShieldBeltEX</defName>
+    <label>庇佑者护盾</label>
+    <description>一款强大的团队用护盾释放器，不过由于其核心组件及其贵重，即使在核心世界也无法做到量产.一次事故使得这些优秀的产品散落到边缘世界，但即使如此，也不是人人都能够驾驭这种强大的装置的，如果强行使用甚至可能招致一些不可预料的后果.</description>
+    <thingClass>Myth.MassShield</thingClass>
+    <graphicData>
+      <texPath>Things/Pawn/Humanlike/Apparel/ShieldBelt/ShieldBelt</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <tickerType>Normal</tickerType>
+    <techLevel>Spacer</techLevel>
+    <statBases>
+      <Mass>3</Mass>
+      <MarketValue>10000</MarketValue>
+    </statBases>
+    <smeltable>false</smeltable>
+    <thingCategories>
+      <li>Apparel</li>
+    </thingCategories>
+    <apparel>
+      <careIfWornByCorpse>false</careIfWornByCorpse>
+      <bodyPartGroups>
+        <li>Waist</li>
+      </bodyPartGroups>
+      <layers>
+        <li>Belt</li>
+      </layers>
+    </apparel>
+    <comps>
+      <li Class="Myth.CompProperties_MassShield">
+        <!-- 恢复冷却 -->
+        <restticks>100</restticks>
+        <!-- 护盾能量 -->
+        <pointmax>1000</pointmax>
+        <!-- 秒恢复量 -->
+        <restpertick>1</restpertick>
+        <!-- 拦截间隔 -->
+        <ticktoblock>1</ticktoblock>
+        <!-- 射程 -->
+        <range>4</range>
+        <!-- 每点能量吸收的伤害 -->
+        <pointperdamage>0.5</pointperdamage>
+      </li>
+    </comps>
+  </ThingDef>
+</Defs>

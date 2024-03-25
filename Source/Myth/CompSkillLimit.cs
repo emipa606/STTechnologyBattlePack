@@ -19,11 +19,11 @@ public class CompSkillLimit : ThingComp
             return;
         }
 
-        if (parent is Apparel { Wearer: { } } apparel &&
+        if (parent is Apparel { Wearer: not null } apparel &&
             apparel.Wearer.skills.GetSkill(Properties.skill) != null &&
             apparel.Wearer.skills.GetSkill(Properties.skill).Level < Properties.level)
         {
-            if (apparel.Wearer is { Map: { } })
+            if (apparel.Wearer is { Map: not null })
             {
                 MoteMaker.ThrowText(
                     new Vector3(apparel.Wearer.Position.x + 1f, apparel.Wearer.Position.y,

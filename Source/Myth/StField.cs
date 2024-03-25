@@ -11,9 +11,9 @@ internal class StField : Apparel
     private static readonly Material ShieldSparksMat =
         MaterialPool.MatFrom("Things/Projectile/field", MatBases.LightOverlay);
 
-    public static Texture2D UIOFF = ContentFinder<Texture2D>.Get("UI/FieldOFF");
+    public static readonly Texture2D UIOFF = ContentFinder<Texture2D>.Get("UI/FieldOFF");
 
-    public static Texture2D UION = ContentFinder<Texture2D>.Get("UI/FieldON");
+    public static readonly Texture2D UION = ContentFinder<Texture2D>.Get("UI/FieldON");
 
     private HediffDef buff;
     private float currentAngle = Random.Range(0f, 360f);
@@ -170,6 +170,7 @@ internal class StField : Apparel
             }
         }
 
+        // ReSharper disable once ForCanBeConvertedToForeach
         for (var k = 0; k < list.Count; k++)
         {
             var pawn = list[k];

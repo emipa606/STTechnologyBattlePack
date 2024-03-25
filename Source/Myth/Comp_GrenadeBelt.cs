@@ -2,6 +2,4 @@ using Verse;
 
 namespace Myth;
 
-public class Comp_GrenadeBelt : ThingComp
-{
-}
+public class Comp_GrenadeBelt : ThingComp;

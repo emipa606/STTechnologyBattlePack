@@ -12,9 +12,9 @@ public class Building_Humidifier : Building
     private static readonly Material ShieldSparksMat =
         MaterialPool.MatFrom("Things/Projectile/ShieldSparks", MatBases.LightOverlay);
 
-    public static Texture2D UION = ContentFinder<Texture2D>.Get("UI/ON");
+    public static readonly Texture2D UION = ContentFinder<Texture2D>.Get("UI/ON");
 
-    public static Texture2D UIOFF = ContentFinder<Texture2D>.Get("UI/OFF");
+    public static readonly Texture2D UIOFF = ContentFinder<Texture2D>.Get("UI/OFF");
 
     private float areasize;
 
@@ -98,22 +98,12 @@ public class Building_Humidifier : Building
         command_Toggle.groupKey = 88234441;
         list.Add(command_Toggle);
         var gizmos = base.GetGizmos();
-        if (gizmos != null)
-        {
-            return list.AsEnumerable().Concat(gizmos);
-        }
-
-        return list.AsEnumerable();
+        return gizmos != null ? list.AsEnumerable().Concat(gizmos) : list.AsEnumerable();
     }
 
     public bool IsPowerOn()
     {
-        if (PowerValue is { PowerOn: true })
-        {
-            return true;
-        }
-
-        return false;
+        return PowerValue is { PowerOn: true };
     }
 
     public override void Tick()
@@ -161,17 +151,16 @@ public class Building_Humidifier : Building
         }
 
         var list = new List<Pawn>();
-        for (var i = 0; i < allPawnsSpawned.Count; i++)
+        foreach (var pawn in allPawnsSpawned)
         {
-            if (allPawnsSpawned[i].Position.InHorDistOf(Position, radius))
+            if (pawn.Position.InHorDistOf(Position, radius))
             {
-                list.Add(allPawnsSpawned[i]);
+                list.Add(pawn);
             }
         }
 
-        for (var j = 0; j < list.Count; j++)
+        foreach (var pawn in list)
         {
-            var pawn = list[j];
             if (pawn is { Dead: false })
             {
                 HealthUtility.AdjustSeverity(pawn, hediffDef, 0.1f);

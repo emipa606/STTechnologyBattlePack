@@ -37,7 +37,9 @@ internal class Gizmo_GrenadeStatus : Gizmo
             Text.Font = GameFont.Small;
             Text.Anchor = TextAnchor.MiddleCenter;
             Widgets.Label(rect3,
-                grenade is { Wearer: { } } ? $"{grenade.ammo:F0} / {grenade.ammomax:F0}" : $"{grenade.ammo:F0} / 0");
+                grenade is { Wearer: not null }
+                    ? $"{grenade.ammo:F0} / {grenade.ammomax:F0}"
+                    : $"{grenade.ammo:F0} / 0");
 
             Text.Anchor = TextAnchor.UpperLeft;
         });

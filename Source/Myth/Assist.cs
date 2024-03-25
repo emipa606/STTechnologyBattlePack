@@ -60,7 +60,7 @@ internal class Assist : Apparel
         }
 
         var list = Wearer.Map.thingGrid.ThingsListAt(square);
-        var things = new List<Thing>();
+        _ = new List<Thing>();
         var i = 0;
         for (var num = list.Count; i < num; i++)
         {
@@ -111,7 +111,7 @@ internal class Assist : Apparel
     {
         return (Vector3)projectile.GetType()
             .GetField("destination", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
-            ?.GetValue(projectile);
+            ?.GetValue(projectile)!;
     }
 
     public ThingDef GetTargetEquipmentFromProjectile(Projectile projectile)

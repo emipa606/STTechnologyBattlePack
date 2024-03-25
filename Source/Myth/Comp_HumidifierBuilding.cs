@@ -2,6 +2,4 @@ using Verse;
 
 namespace Myth;
 
-public class Comp_HumidifierBuilding : ThingComp
-{
-}
+public class Comp_HumidifierBuilding : ThingComp;

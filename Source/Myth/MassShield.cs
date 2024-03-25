@@ -13,7 +13,7 @@ internal class MassShield : Apparel
     private static readonly Material ShieldSparksMat =
         MaterialPool.MatFrom("Things/Projectile/massshield", MatBases.LightOverlay);
 
-    public static Texture2D SWITCH = ContentFinder<Texture2D>.Get("UI/MassShieldSwitch");
+    public static readonly Texture2D SWITCH = ContentFinder<Texture2D>.Get("UI/MassShieldSwitch");
 
     private List<IntVec3> cellstoprotect;
     private float currentAngle = Random.Range(0f, 360f);
@@ -168,7 +168,7 @@ internal class MassShield : Apparel
 
     private void ReCalibrateCells()
     {
-        cellstoprotect = new List<IntVec3>();
+        cellstoprotect = [];
         foreach (var item in GenRadial.RadialCellsAround(Wearer.Position, range, false))
         {
             if (Vectors.EuclDist(item, Wearer.Position) >= range - 1.5f)
@@ -203,7 +203,7 @@ internal class MassShield : Apparel
 
             var shouldReturn = true;
             var thing = ReflectionHelper.GetInstanceField(typeof(Projectile), projectile, "launcher") as Thing;
-            if (thing is { Faction: { IsPlayer: true } })
+            if (thing is { Faction.IsPlayer: true })
             {
                 shouldReturn = false;
             }
@@ -243,7 +243,7 @@ internal class MassShield : Apparel
 
     private void Break()
     {
-        SoundDefOf.EnergyShield_Broken.PlayOneShot(new TargetInfo(Wearer.Position, Wearer.Map));
+        SoundDef.Named("EnergyShield_Broken").PlayOneShot(new TargetInfo(Wearer.Position, Wearer.Map));
         FleckMaker.Static(Wearer.TrueCenter(), Wearer.Map, FleckDefOf.ExplosionFlash, 12f);
         FleckMaker.ThrowDustPuff(
             Wearer.TrueCenter() + (Vector3Utility.HorizontalVectorFromAngle(Rand.Range(0, 360)) *
@@ -280,7 +280,7 @@ internal class MassShield : Apparel
     {
         return (Vector3)projectile.GetType()
             .GetField("destination", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
-            ?.GetValue(projectile);
+            ?.GetValue(projectile)!;
     }
 
     private void Reset()

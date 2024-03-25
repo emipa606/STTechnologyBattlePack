@@ -37,15 +37,10 @@ internal class Gizmo_MINDShieldStatus : Gizmo
                 bgTex: EmptyShieldBarTex, doBorder: false);
             Text.Font = GameFont.Small;
             Text.Anchor = TextAnchor.MiddleCenter;
-            if (shield is { Wearer: { } })
-            {
-                Widgets.Label(rect3,
-                    $"{shield.Energy:F0} / {(shield.Wearer.skills.GetSkill(SkillDefOf.Intellectual).Level * 10f) + 100f:F0}");
-            }
-            else
-            {
-                Widgets.Label(rect3, $"{shield.Energy:F0} / 0");
-            }
+            Widgets.Label(rect3,
+                shield is { Wearer: not null }
+                    ? $"{shield.Energy:F0} / {(shield.Wearer.skills.GetSkill(SkillDefOf.Intellectual).Level * 10f) + 100f:F0}"
+                    : $"{shield.Energy:F0} / 0");
 
             Text.Anchor = TextAnchor.UpperLeft;
         });
