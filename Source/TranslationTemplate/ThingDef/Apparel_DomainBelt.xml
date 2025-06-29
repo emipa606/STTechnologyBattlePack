@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: 虚弱立场 -->
+  <Apparel_DomainBelt.label>虚弱立场</Apparel_DomainBelt.label>
+  <!-- EN: 一个便携式的立场释放装置，可致使一定范围内的敌人虚弱.（需要基础的研究能力） -->
+  <Apparel_DomainBelt.description>一个便携式的立场释放装置，可致使一定范围内的敌人虚弱.（需要基础的研究能力）</Apparel_DomainBelt.description>
+  <!-- EN: 激励立场 -->
+  <Apparel_EnergizingDomainBelt.label>激励立场</Apparel_EnergizingDomainBelt.label>
+  <!-- EN: 一个便携式的立场释放装置，可以激励一定范围内的友军.（需要基础的研究能力） -->
+  <Apparel_EnergizingDomainBelt.description>一个便携式的立场释放装置，可以激励一定范围内的友军.（需要基础的研究能力）</Apparel_EnergizingDomainBelt.description>
+</LanguageData>

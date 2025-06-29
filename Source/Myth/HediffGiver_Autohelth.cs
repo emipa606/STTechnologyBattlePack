@@ -7,7 +7,7 @@ namespace Myth;
 
 internal class HediffGiver_Autohelth : HediffGiver
 {
-    public new readonly HediffDef hediff = HediffDefOf.Anesthetic;
+    private new readonly HediffDef hediff = HediffDefOf.Anesthetic;
     public new bool canAffectAnyLivePart;
 
     public bool cure;

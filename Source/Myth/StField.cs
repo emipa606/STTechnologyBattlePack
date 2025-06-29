@@ -11,20 +11,20 @@ internal class StField : Apparel
     private static readonly Material ShieldSparksMat =
         MaterialPool.MatFrom("Things/Projectile/field", MatBases.LightOverlay);
 
-    public static readonly Texture2D UIOFF = ContentFinder<Texture2D>.Get("UI/FieldOFF");
+    private static readonly Texture2D UIOFF = ContentFinder<Texture2D>.Get("UI/FieldOFF");
 
-    public static readonly Texture2D UION = ContentFinder<Texture2D>.Get("UI/FieldON");
+    private static readonly Texture2D UION = ContentFinder<Texture2D>.Get("UI/FieldON");
 
     private HediffDef buff;
     private float currentAngle = Random.Range(0f, 360f);
 
-    public bool forEnemy;
+    private bool forEnemy;
 
     private bool isactive;
 
     public float point;
 
-    public float pointmaxo;
+    private float pointmaxo;
 
     private float range;
 
@@ -36,7 +36,7 @@ internal class StField : Apparel
 
     private bool Visiblerange;
 
-    public float pointmax
+    public float Pointmax
     {
         get
         {
@@ -81,7 +81,7 @@ internal class StField : Apparel
         }
     }
 
-    public override void Tick()
+    protected override void Tick()
     {
         base.Tick();
         if (Wearer == null)
@@ -107,7 +107,7 @@ internal class StField : Apparel
                     return;
                 }
 
-                CheckAndGive();
+                checkAndGive();
                 point -= 1f;
                 if (!(point <= 0f))
                 {
@@ -115,15 +115,15 @@ internal class StField : Apparel
                 }
 
                 point = 0f;
-                PowerDown();
+                powerDown();
                 break;
             }
             case false when Wearer != null:
             {
                 point += recoverypointpercheck;
-                if (point > pointmax)
+                if (point > Pointmax)
                 {
-                    point = pointmax;
+                    point = Pointmax;
                 }
 
                 break;
@@ -131,19 +131,19 @@ internal class StField : Apparel
         }
     }
 
-    private void PowerDown()
+    private void powerDown()
     {
         MoteMaker.ThrowText(new Vector3(Wearer.Position.x + 1f, Wearer.Position.y, Wearer.Position.z + 1f),
             Wearer.Map, "能量耗尽".Translate(), Color.blue);
         isactive = false;
     }
 
-    public bool CheckAndGive()
+    private void checkAndGive()
     {
         var allPawnsSpawned = Wearer.Map.mapPawns.AllPawnsSpawned;
         if (allPawnsSpawned == null)
         {
-            return false;
+            return;
         }
 
         var list = new List<Pawn>();
@@ -179,11 +179,9 @@ internal class StField : Apparel
                 HealthUtility.AdjustSeverity(pawn, buff, 0.1f);
             }
         }
-
-        return false;
     }
 
-    private void Tswitch()
+    private void tswitch()
     {
         if (isactive)
         {
@@ -206,7 +204,7 @@ internal class StField : Apparel
         {
             yield return new Command_MouseOver
             {
-                action = Tswitch,
+                action = tswitch,
                 mouseOverCallback = OnMouseOverGizmo,
                 icon = UIOFF,
                 defaultLabel = "OFF".Translate(),
@@ -217,7 +215,7 @@ internal class StField : Apparel
         {
             yield return new Command_MouseOver
             {
-                action = Tswitch,
+                action = tswitch,
                 mouseOverCallback = OnMouseOverGizmo,
                 icon = UION,
                 defaultLabel = "ON".Translate(),
@@ -234,10 +232,10 @@ internal class StField : Apparel
     public override void DrawWornExtras()
     {
         base.DrawWornExtras();
-        DrawRangeOverlay();
+        drawRangeOverlay();
     }
 
-    private void DrawRangeOverlay()
+    private void drawRangeOverlay()
     {
         if (isactive)
         {

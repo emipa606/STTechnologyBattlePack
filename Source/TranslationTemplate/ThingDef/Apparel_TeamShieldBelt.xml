@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: 伪制庇佑者护盾 -->
+  <Apparel_TeamShieldBelt.label>伪制庇佑者护盾</Apparel_TeamShieldBelt.label>
+  <!-- EN: 一个可释放大型护盾的腰带,由于为了使内部成员可以向外射击，无法拦截下所有的攻击.(需要拥有有15级的研究能力) -->
+  <Apparel_TeamShieldBelt.description>一个可释放大型护盾的腰带,由于为了使内部成员可以向外射击，无法拦截下所有的攻击.(需要拥有有15级的研究能力)</Apparel_TeamShieldBelt.description>
+  <!-- EN: 庇佑者护盾 -->
+  <Apparel_TeamShieldBeltEX.label>庇佑者护盾</Apparel_TeamShieldBeltEX.label>
+  <!-- EN: 一款强大的团队用护盾释放器，不过由于其核心组件及其贵重，即使在核心世界也无法做到量产.一次事故使得这些优秀的产品散落到边缘世界，但即使如此，也不是人人都能够驾驭这种强大的装置的，如果强行使用甚至可能招致一些不可预料的后果. -->
+  <Apparel_TeamShieldBeltEX.description>一款强大的团队用护盾释放器，不过由于其核心组件及其贵重，即使在核心世界也无法做到量产.一次事故使得这些优秀的产品散落到边缘世界，但即使如此，也不是人人都能够驾驭这种强大的装置的，如果强行使用甚至可能招致一些不可预料的后果.</Apparel_TeamShieldBeltEX.description>
+</LanguageData>

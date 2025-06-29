@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: 炮塔信标 -->
+  <STBombDot.label>炮塔信标</STBombDot.label>
+  <!-- EN: 学习制作炮塔信标，可以召唤投放临时炮塔辅助防御. -->
+  <STBombDot.description>学习制作炮塔信标，可以召唤投放临时炮塔辅助防御.</STBombDot.description>
+  <!-- EN: 能量立场 -->
+  <STDomainBelt.label>能量立场</STDomainBelt.label>
+  <!-- EN: 学习制作便携式能量立场，携带者可以在小范围内影响友军或敌人. -->
+  <STDomainBelt.description>学习制作便携式能量立场，携带者可以在小范围内影响友军或敌人.</STDomainBelt.description>
+  <!-- EN: 手雷腰带 -->
+  <STGrenadeBelt.label>手雷腰带</STGrenadeBelt.label>
+  <!-- EN: 学习制作手雷腰带，在使用其他武器的时候可以同时投掷雷管. -->
+  <STGrenadeBelt.description>学习制作手雷腰带，在使用其他武器的时候可以同时投掷雷管.</STGrenadeBelt.description>
+  <!-- EN: 能量盾科技 -->
+  <STPowerShield.label>能量盾科技</STPowerShield.label>
+  <!-- EN: 让你可以制造ST型号的单人护盾,可以抵挡任何攻击并且不会阻止使用者进行射击. -->
+  <STPowerShield.description>让你可以制造ST型号的单人护盾,可以抵挡任何攻击并且不会阻止使用者进行射击.</STPowerShield.description>
+  <!-- EN: 团体盾科技 -->
+  <STPTeamShield.label>团体盾科技</STPTeamShield.label>
+  <!-- EN: 学习仿制庇佑者护盾,可以同时保护多名队友. -->
+  <STPTeamShield.description>学习仿制庇佑者护盾,可以同时保护多名队友.</STPTeamShield.description>
+</LanguageData>

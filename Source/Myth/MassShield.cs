@@ -13,7 +13,7 @@ internal class MassShield : Apparel
     private static readonly Material ShieldSparksMat =
         MaterialPool.MatFrom("Things/Projectile/massshield", MatBases.LightOverlay);
 
-    public static readonly Texture2D SWITCH = ContentFinder<Texture2D>.Get("UI/MassShieldSwitch");
+    private static readonly Texture2D SWITCH = ContentFinder<Texture2D>.Get("UI/MassShieldSwitch");
 
     private List<IntVec3> cellstoprotect;
     private float currentAngle = Random.Range(0f, 360f);
@@ -22,7 +22,7 @@ internal class MassShield : Apparel
 
     public float point;
 
-    public float pointmaxo;
+    private float pointmaxo;
 
     private float pointperdamage;
 
@@ -91,7 +91,7 @@ internal class MassShield : Apparel
         }
     }
 
-    public override void Tick()
+    protected override void Tick()
     {
         base.Tick();
         TickCount++;
@@ -105,7 +105,7 @@ internal class MassShield : Apparel
             ticktorest -= 1f;
             if (ticktorest <= 0f)
             {
-                Reset();
+                reset();
             }
         }
         else
@@ -129,7 +129,7 @@ internal class MassShield : Apparel
             if (TickCount is >= 100 or 0L)
             {
                 TickCount = 1L;
-                ReCalibrateCells();
+                reCalibrateCells();
             }
 
             if (TickCount % ticktoblock != 0f)
@@ -143,12 +143,12 @@ internal class MassShield : Apparel
             }
             else
             {
-                TickProtection();
+                tickProtection();
             }
         }
     }
 
-    private void TickProtection()
+    private void tickProtection()
     {
         if (cellstoprotect == null)
         {
@@ -162,11 +162,11 @@ internal class MassShield : Apparel
 
         if (point <= 0f)
         {
-            Break();
+            breakShield();
         }
     }
 
-    private void ReCalibrateCells()
+    private void reCalibrateCells()
     {
         cellstoprotect = [];
         foreach (var item in GenRadial.RadialCellsAround(Wearer.Position, range, false))
@@ -178,7 +178,7 @@ internal class MassShield : Apparel
         }
     }
 
-    public virtual void ProtectSquare(IntVec3 square)
+    protected virtual void ProtectSquare(IntVec3 square)
     {
         if (!square.InBounds(Wearer.Map))
         {
@@ -208,7 +208,7 @@ internal class MassShield : Apparel
                 shouldReturn = false;
             }
 
-            if (projectile.def.projectile.flyOverhead && !WillTargetLandInRange(projectile))
+            if (projectile.def.projectile.flyOverhead && !willTargetLandInRange(projectile))
             {
                 shouldReturn = false;
             }
@@ -231,7 +231,7 @@ internal class MassShield : Apparel
 
             FleckMaker.ThrowLightningGlow(projectile.ExactPosition, Wearer.Map, 0.5f);
             SoundDefOf.EnergyShield_AbsorbDamage.PlayOneShot(new TargetInfo(Wearer.Position, Wearer.Map));
-            ProcessDamage(projectile.def.projectile.GetDamageAmount(thing));
+            processDamage(projectile.def.projectile.GetDamageAmount(thing));
             list2.Add(projectile);
         }
 
@@ -241,7 +241,7 @@ internal class MassShield : Apparel
         }
     }
 
-    private void Break()
+    private void breakShield()
     {
         SoundDef.Named("EnergyShield_Broken").PlayOneShot(new TargetInfo(Wearer.Position, Wearer.Map));
         FleckMaker.Static(Wearer.TrueCenter(), Wearer.Map, FleckDefOf.ExplosionFlash, 12f);
@@ -253,7 +253,7 @@ internal class MassShield : Apparel
         isactive = false;
     }
 
-    public void ProcessDamage(int damage)
+    private void processDamage(int damage)
     {
         if (point <= 0f)
         {
@@ -270,20 +270,20 @@ internal class MassShield : Apparel
         }
     }
 
-    public bool WillTargetLandInRange(Projectile projectile)
+    private bool willTargetLandInRange(Projectile projectile)
     {
-        var targetLocationFromProjectile = GetTargetLocationFromProjectile(projectile);
+        var targetLocationFromProjectile = getTargetLocationFromProjectile(projectile);
         return !(Vector3.Distance(Wearer.Position.ToVector3(), targetLocationFromProjectile) > range);
     }
 
-    public Vector3 GetTargetLocationFromProjectile(Projectile projectile)
+    private static Vector3 getTargetLocationFromProjectile(Projectile projectile)
     {
         return (Vector3)projectile.GetType()
             .GetField("destination", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
             ?.GetValue(projectile)!;
     }
 
-    private void Reset()
+    private void reset()
     {
         if (Wearer.Spawned)
         {
@@ -296,7 +296,7 @@ internal class MassShield : Apparel
         point = pointmax * 0.1f;
     }
 
-    private void Tswitch()
+    private void tswitch()
     {
         if (isactive)
         {
@@ -317,7 +317,7 @@ internal class MassShield : Apparel
     {
         yield return new Command_MouseOver
         {
-            action = Tswitch,
+            action = tswitch,
             mouseOverCallback = OnMouseOverGizmo,
             icon = SWITCH,
             defaultLabel = "ON/OFF".Translate(),
@@ -332,10 +332,10 @@ internal class MassShield : Apparel
     public override void DrawWornExtras()
     {
         base.DrawWornExtras();
-        DrawRangeOverlay();
+        drawRangeOverlay();
     }
 
-    private void DrawRangeOverlay()
+    private void drawRangeOverlay()
     {
         if (isactive)
         {

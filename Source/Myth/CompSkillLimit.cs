@@ -6,9 +6,9 @@ namespace Myth;
 
 public class CompSkillLimit : ThingComp
 {
-    public int tick;
+    private int tick;
 
-    protected CompProperties_SkillLimit Properties => (CompProperties_SkillLimit)props;
+    private CompProperties_SkillLimit Properties => (CompProperties_SkillLimit)props;
 
     public override void CompTick()
     {
@@ -30,7 +30,7 @@ public class CompSkillLimit : ThingComp
                         apparel.Wearer.Position.z + 1f), apparel.Wearer.Map, "技能等级不足".Translate(), Color.red);
             }
 
-            apparel.Wearer.apparel.TryDrop(apparel, out var _);
+            apparel.Wearer.apparel.TryDrop(apparel, out _);
         }
 
         tick = 0;

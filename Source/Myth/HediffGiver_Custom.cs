@@ -20,8 +20,8 @@ internal class HediffGiver_Custom : HediffGiver
     public override void OnIntervalPassed(Pawn pawn, Hediff cause)
     {
         var num = mtbDays;
-        var num2 = 60000f;
-        var num3 = 60f;
+        const float num2 = 60000f;
+        const float num3 = 60f;
         switch (num)
         {
             case float.PositiveInfinity:
@@ -29,18 +29,6 @@ internal class HediffGiver_Custom : HediffGiver
             case <= 0f:
                 Log.Error($"MTBEventOccurs with mtb={num}");
                 return;
-        }
-
-        if (num2 <= 0f)
-        {
-            Log.Error($"MTBEventOccurs with mtbUnit={num2}");
-            return;
-        }
-
-        if (num3 <= 0f)
-        {
-            Log.Error($"MTBEventOccurs with checkDuration={num3}");
-            return;
         }
 
         var num4 = num3 / (num * (double)num2);

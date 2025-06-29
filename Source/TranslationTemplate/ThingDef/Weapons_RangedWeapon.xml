@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: 释放信标 -->
+  <Bullet_DorpDot.label>释放信标</Bullet_DorpDot.label>
+  <!-- EN: 炮塔信标发射器 -->
+  <Gun_DorpDot.label>炮塔信标发射器</Gun_DorpDot.label>
+  <!-- EN: 一个一次性使用的炮塔坐标发射器，可最多同时召唤10个临时炮塔进行火力压制。 -->
+  <Gun_DorpDot.description>一个一次性使用的炮塔坐标发射器，可最多同时召唤10个临时炮塔进行火力压制。</Gun_DorpDot.description>
+  <!-- EN: 枪管 -->
+  <Gun_DorpDot.tools.0.label>枪管</Gun_DorpDot.tools.0.label>
+  <!-- EN: 炮塔信标发射器 -->
+  <Gun_DorpDot.verbs.Verb_ShootOneUse.label>炮塔信标发射器</Gun_DorpDot.verbs.Verb_ShootOneUse.label>
+</LanguageData>

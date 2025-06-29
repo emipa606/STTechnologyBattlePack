@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Verse;
 
@@ -18,8 +19,8 @@ public static class Graphics
                 return CircleMesh_cache;
             }
 
-            var num = 1.0;
-            var list = new List<Vector2> { new Vector2(0f, 0f) };
+            const double num = 1.0;
+            var list = new List<Vector2> { new(0f, 0f) };
             for (var i = 0; i <= 360; i += 4)
             {
                 var num2 = i / 180f * Math.PI;
@@ -36,12 +37,12 @@ public static class Graphics
                 array[j] = new Vector3(list[j].x, 0f, list[j].y);
             }
 
-            var triangles = new Triangulator(list.ToArray()).Triangulate();
+            var triangles = new Triangulator(array.ToList()).Triangulate();
             CircleMesh_cache = new Mesh
             {
                 vertices = array,
                 uv = new Vector2[list.Count],
-                triangles = triangles
+                triangles = triangles.ToArray()
             };
             CircleMesh_cache.RecalculateNormals();
             CircleMesh_cache.RecalculateBounds();

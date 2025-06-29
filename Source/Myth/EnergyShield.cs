@@ -44,7 +44,7 @@ public class EnergyShield : Apparel
 
     public float Energy { get; private set; }
 
-    public ShieldState ShieldState => ticksToReset > 0 ? ShieldState.Resetting : ShieldState.Active;
+    private ShieldState ShieldState => ticksToReset > 0 ? ShieldState.Resetting : ShieldState.Active;
 
     private bool ShouldDisplay
     {
@@ -78,27 +78,37 @@ public class EnergyShield : Apparel
         return EnergyMax * ApparelScorePerEnergyMax;
     }
 
-    public override void Tick()
+    protected override void Tick()
     {
         base.Tick();
         if (Wearer == null)
         {
             Energy = 0f;
         }
-        else if (ShieldState == ShieldState.Resetting)
+        else
         {
-            ticksToReset--;
-            if (ticksToReset <= 0)
+            switch (ShieldState)
             {
-                Reset();
-            }
-        }
-        else if (ShieldState == ShieldState.Active)
-        {
-            Energy += EnergyGainPerTick;
-            if (Energy > EnergyMax)
-            {
-                Energy = EnergyMax;
+                case ShieldState.Resetting:
+                {
+                    ticksToReset--;
+                    if (ticksToReset <= 0)
+                    {
+                        reset();
+                    }
+
+                    break;
+                }
+                case ShieldState.Active:
+                {
+                    Energy += EnergyGainPerTick;
+                    if (Energy > EnergyMax)
+                    {
+                        Energy = EnergyMax;
+                    }
+
+                    break;
+                }
             }
         }
     }
@@ -118,15 +128,15 @@ public class EnergyShield : Apparel
         Energy -= dinfo.Amount * EnergyLossPerDamage;
         if (Energy < 0f)
         {
-            Break();
+            @break();
             return false;
         }
 
-        AbsorbedDamage(dinfo);
+        absorbedDamage(dinfo);
         return true;
     }
 
-    private void AbsorbedDamage(DamageInfo dinfo)
+    private void absorbedDamage(DamageInfo dinfo)
     {
         if (Energy > EnergyMax * 0.9 && dinfo.Instigator != null)
         {
@@ -167,7 +177,7 @@ public class EnergyShield : Apparel
         lastAbsorbDamageTick = Find.TickManager.TicksGame;
     }
 
-    private void Break()
+    private void @break()
     {
         SoundDef.Named("EnergyShield_Broken").PlayOneShot(new TargetInfo(Wearer.Position, Wearer.Map));
         FleckMaker.Static(Wearer.TrueCenter(), Wearer.Map, FleckDefOf.ExplosionFlash, 12f);
@@ -187,7 +197,7 @@ public class EnergyShield : Apparel
         return true;
     }
 
-    private void Reset()
+    private void reset()
     {
         if (Wearer.Spawned)
         {

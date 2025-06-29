@@ -1,0 +1,45 @@
+ManifestFileVersion: 0
+CRC: 746726920
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 0f799327123f8fa457cb9226c6a364f0
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 2612ac43db082a73502ee80f2eceb73f
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 0f799327123f8fa457cb9226c6a364f0
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Data/Mlie.STTechnologyBattlePack/Textures/Things/Projectile/ShieldSparks.png
+- Assets/Data/Mlie.STTechnologyBattlePack/Textures/Things/Projectile/ambrosia/ambrosia.png
+- Assets/Data/Mlie.STTechnologyBattlePack/Textures/Things/Pawn/Humanlike/Apparel/Apparel_EMPGrenadeBelt.png
+- Assets/Data/Mlie.STTechnologyBattlePack/Textures/UI/OFF.png
+- Assets/Data/Mlie.STTechnologyBattlePack/Textures/Things/Pawn/Humanlike/Apparel/Apparel_MolotovGrenadeBelt.png
+- Assets/Data/Mlie.STTechnologyBattlePack/Textures/UI/FieldOFF.png
+- Assets/Data/Mlie.STTechnologyBattlePack/Textures/Things/Projectile/massshieldaa.png
+- Assets/Data/Mlie.STTechnologyBattlePack/Textures/Things/Projectile/massshielda.png
+- Assets/Data/Mlie.STTechnologyBattlePack/Textures/Things/Projectile/massshield.png
+- Assets/Data/Mlie.STTechnologyBattlePack/Textures/Things/Building/Security/Gun_TemporaryTurret.png
+- Assets/Data/Mlie.STTechnologyBattlePack/Textures/Things/Projectile/STLight.png
+- Assets/Data/Mlie.STTechnologyBattlePack/Textures/Things/Projectile/shield.png
+- Assets/Data/Mlie.STTechnologyBattlePack/Textures/Things/Projectile/BombDot.png
+- Assets/Data/Mlie.STTechnologyBattlePack/Textures/Things/Projectile/tKshield1.png
+- Assets/Data/Mlie.STTechnologyBattlePack/Textures/Things/Projectile/field.png
+- Assets/Data/Mlie.STTechnologyBattlePack/Textures/Things/Pawn/Humanlike/Apparel/DomainBelt.png
+- Assets/Data/Mlie.STTechnologyBattlePack/Textures/Things/Projectile/tKshield.png
+- Assets/Data/Mlie.STTechnologyBattlePack/Textures/UI/ON.png
+- Assets/Data/Mlie.STTechnologyBattlePack/Textures/UI/Lunch.png
+- Assets/Data/Mlie.STTechnologyBattlePack/Textures/UI/MassShieldSwitch.png
+- Assets/Data/Mlie.STTechnologyBattlePack/Textures/Things/Projectile/lighting.png
+- Assets/Data/Mlie.STTechnologyBattlePack/Textures/Things/Projectile/fieldaa.png
+- Assets/Data/Mlie.STTechnologyBattlePack/Textures/Things/Projectile/spear.png
+- Assets/Data/Mlie.STTechnologyBattlePack/Textures/UI/FieldON.png
+- Assets/Data/Mlie.STTechnologyBattlePack/Textures/Things/Pawn/Humanlike/Apparel/Apparel_FragGrenadeBelt.png
+- Assets/Data/Mlie.STTechnologyBattlePack/Textures/Things/Pawn/Humanlike/Apparel/Apparel_DorpDotBelt.png
+Dependencies: []

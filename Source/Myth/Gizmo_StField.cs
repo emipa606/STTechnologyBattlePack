@@ -29,12 +29,12 @@ internal class Gizmo_StField : Gizmo
             Widgets.Label(rect, field.LabelCap);
             var rect3 = rect2;
             rect3.yMin = overRect.height / 2f;
-            var fillPercent = field.point / Mathf.Max(1f, field.pointmax);
+            var fillPercent = field.point / Mathf.Max(1f, field.Pointmax);
             Widgets.FillableBar(rect3, fillPercent, FullShieldBarTex, EmptyShieldBarTex, false);
             Text.Font = GameFont.Small;
             Text.Anchor = TextAnchor.MiddleCenter;
             Widgets.Label(rect3,
-                $"{field.point * 10f:F0} / {field.pointmax * 10f:F0}");
+                $"{field.point * 10f:F0} / {field.Pointmax * 10f:F0}");
             Text.Anchor = TextAnchor.UpperLeft;
         });
         return new GizmoResult(GizmoState.Clear);

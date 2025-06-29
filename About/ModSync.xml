@@ -2,7 +2,7 @@
 <ModSyncNinjaData>
   <ID>c35436e7-d987-4465-8f48-c03b812f20af</ID>
   <ModName>ST科技战斗包 - Technology Battle Pack (Continued)</ModName>
-  <Version>1.5.0</Version>
+  <Version>1.6.0</Version>
   <SaveBreaking>False</SaveBreaking>
   <Host name="Github">
     <Owner>emipa606</Owner>
@@ -12,3 +12,4 @@
     <Branch>master</Branch>
   </Host>
 </ModSyncNinjaData>
+

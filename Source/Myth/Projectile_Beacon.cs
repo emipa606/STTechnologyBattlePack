@@ -12,13 +12,13 @@ public class Projectile_Beacon : Projectile_Explosive
     {
         var map = Map;
         GenSpawn.Spawn(
-            MakeSkyfaller(def.projectile.preExplosionSpawnThingDef, def.projectile.postExplosionSpawnThingDef),
+            makeSkyfaller(def.projectile.preExplosionSpawnThingDef, def.projectile.postExplosionSpawnThingDef),
             Position, map);
         SoundDefOf.Standard_Drop.PlayOneShot(new TargetInfo(Position, map));
         Destroy();
     }
 
-    public static Skyfaller MakeSkyfaller(ThingDef skyfaller, ThingDef innerThing)
+    private static Skyfaller makeSkyfaller(ThingDef skyfaller, ThingDef innerThing)
     {
         var thing = ThingMaker.MakeThing(innerThing);
         thing.SetFaction(Faction.OfPlayer);

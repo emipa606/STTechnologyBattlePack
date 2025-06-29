@@ -9,13 +9,13 @@ namespace Myth;
 [StaticConstructorOnStartup]
 internal class GrenadeBelt : Apparel
 {
-    public static readonly Texture2D lunch = ContentFinder<Texture2D>.Get("UI/Lunch");
+    private static readonly Texture2D lunch = ContentFinder<Texture2D>.Get("UI/Lunch");
 
-    private readonly TargetingParameters tgp = new TargetingParameters();
+    private readonly TargetingParameters tgp = new();
 
     public float ammo;
 
-    public float ammoomax;
+    private float ammoomax;
 
     private int cooldown;
 
@@ -83,7 +83,7 @@ internal class GrenadeBelt : Apparel
         }
     }
 
-    public override void Tick()
+    protected override void Tick()
     {
         base.Tick();
         if (Wearer == null)
@@ -122,7 +122,7 @@ internal class GrenadeBelt : Apparel
         yield return new Command_Lunchgrenade
         {
             targetingParams = tgp,
-            action = delegate(LocalTargetInfo target) { Lunch(Wearer, target)?.Invoke(); },
+            action = delegate(LocalTargetInfo target) { launch(Wearer, target)?.Invoke(); },
             mouseOverCallback = OnMouseOverGizmo,
             icon = lunch,
             defaultLabel = "使用挂件".Translate(),
@@ -137,10 +137,10 @@ internal class GrenadeBelt : Apparel
     public override void DrawWornExtras()
     {
         base.DrawWornExtras();
-        DrawRangeOverlay();
+        drawRangeOverlay();
     }
 
-    private void DrawRangeOverlay()
+    private void drawRangeOverlay()
     {
         if (!Visiblerange)
         {
@@ -154,7 +154,7 @@ internal class GrenadeBelt : Apparel
         }
     }
 
-    private Action Lunch(Pawn pawn, LocalTargetInfo target)
+    private Action launch(Pawn pawn, LocalTargetInfo target)
     {
         Action result = null;
         if (pawn.skills.GetSkill(SkillDefOf.Shooting) == null)
@@ -174,7 +174,7 @@ internal class GrenadeBelt : Apparel
         {
             if (ammo > 0f && cooldown == 0)
             {
-                var verb_Shoot = new Verb_Shoot
+                var verbShoot = new Verb_Shoot
                 {
                     caster = Wearer,
                     verbProps = new VerbProperties
@@ -185,7 +185,7 @@ internal class GrenadeBelt : Apparel
                         requireLineOfSight = false
                     }
                 };
-                verb_Shoot.TryFindShootLineFromTo(Wearer.Position, target, out var shootLine);
+                verbShoot.TryFindShootLineFromTo(Wearer.Position, target, out var shootLine);
                 var aim = target.Cell + GenRadial.RadialPattern[num];
                 result = delegate
                 {

@@ -12,9 +12,9 @@ public class Building_Humidifier : Building
     private static readonly Material ShieldSparksMat =
         MaterialPool.MatFrom("Things/Projectile/ShieldSparks", MatBases.LightOverlay);
 
-    public static readonly Texture2D UION = ContentFinder<Texture2D>.Get("UI/ON");
+    private static readonly Texture2D UION = ContentFinder<Texture2D>.Get("UI/ON");
 
-    public static readonly Texture2D UIOFF = ContentFinder<Texture2D>.Get("UI/OFF");
+    private static readonly Texture2D UIOFF = ContentFinder<Texture2D>.Get("UI/OFF");
 
     private float areasize;
 
@@ -28,7 +28,7 @@ public class Building_Humidifier : Building
 
     private float currentAngle;
 
-    public Material currentMatrialColour;
+    private Material currentMatrialColour;
 
     public Material currentMoteColour;
 
@@ -63,12 +63,12 @@ public class Building_Humidifier : Building
         }
     }
 
-    public void showa()
+    private void showA()
     {
         isshow = false;
     }
 
-    public void showb()
+    private void showB()
     {
         isshow = true;
     }
@@ -76,37 +76,37 @@ public class Building_Humidifier : Building
     public override IEnumerable<Gizmo> GetGizmos()
     {
         var list = new List<Gizmo>();
-        var command_Toggle = new Command_Toggle();
+        var commandToggle = new Command_Toggle();
         if (isshow)
         {
-            command_Toggle.icon = UIOFF;
-            command_Toggle.isActive = () => isshow;
-            command_Toggle.defaultDesc = "关闭";
-            command_Toggle.defaultLabel = "视觉效果";
-            command_Toggle.toggleAction = showa;
+            commandToggle.icon = UIOFF;
+            commandToggle.isActive = () => isshow;
+            commandToggle.defaultDesc = "关闭";
+            commandToggle.defaultLabel = "视觉效果";
+            commandToggle.toggleAction = showA;
         }
         else
         {
-            command_Toggle.icon = UION;
-            command_Toggle.isActive = () => isshow;
-            command_Toggle.defaultDesc = "打开";
-            command_Toggle.defaultLabel = "视觉效果";
-            command_Toggle.toggleAction = showb;
+            commandToggle.icon = UION;
+            commandToggle.isActive = () => isshow;
+            commandToggle.defaultDesc = "打开";
+            commandToggle.defaultLabel = "视觉效果";
+            commandToggle.toggleAction = showB;
         }
 
-        command_Toggle.activateSound = SoundDefOf.Click;
-        command_Toggle.groupKey = 88234441;
-        list.Add(command_Toggle);
+        commandToggle.activateSound = SoundDefOf.Click;
+        commandToggle.groupKey = 88234441;
+        list.Add(commandToggle);
         var gizmos = base.GetGizmos();
         return gizmos != null ? list.AsEnumerable().Concat(gizmos) : list.AsEnumerable();
     }
 
-    public bool IsPowerOn()
+    private bool IsPowerOn()
     {
         return PowerValue is { PowerOn: true };
     }
 
-    public override void Tick()
+    protected override void Tick()
     {
         base.Tick();
         if (!IsPowerOn())
@@ -123,8 +123,8 @@ public class Building_Humidifier : Building
         areasize1 += 1f;
         if (isshow)
         {
-            DrawSubField(Vectors.IntVecToVec(Position), areasize, 0.02f);
-            DrawSubField(Vectors.IntVecToVec(Position), radius, 0.07f);
+            drawSubField(Vectors.IntVecToVec(Position), areasize, 0.02f);
+            drawSubField(Vectors.IntVecToVec(Position), radius, 0.07f);
             if (areasize > radius)
             {
                 areasize = 0f;
@@ -133,21 +133,21 @@ public class Building_Humidifier : Building
 
         if (areasize1 % 30f == 0f)
         {
-            DrawCenter(Vectors.IntVecToVec(Position));
+            drawCenter(Vectors.IntVecToVec(Position));
         }
 
         if (areasize1 % 80f == 0f)
         {
-            CheckAndGive();
+            checkAndGive();
         }
     }
 
-    public bool CheckAndGive()
+    private void checkAndGive()
     {
         var allPawnsSpawned = Map.mapPawns.AllPawnsSpawned;
         if (allPawnsSpawned == null)
         {
-            return false;
+            return;
         }
 
         var list = new List<Pawn>();
@@ -166,11 +166,9 @@ public class Building_Humidifier : Building
                 HealthUtility.AdjustSeverity(pawn, hediffDef, 0.1f);
             }
         }
-
-        return false;
     }
 
-    public void DrawCenter(Vector3 position)
+    private void drawCenter(Vector3 position)
     {
         if (currentSize > 0.5)
         {
@@ -203,15 +201,15 @@ public class Building_Humidifier : Building
             FadedMaterialPool.FadedVersionOf(ShieldSparksMat, 1f), 0);
     }
 
-    public void DrawSubField(Vector3 position, float Radius, float dreeg)
+    private void drawSubField(Vector3 position, float localRadius, float degree)
     {
         position += new Vector3(0.5f, 0f, 0.5f);
-        var s = new Vector3(Radius, 1f, Radius);
+        var s = new Vector3(localRadius, 1f, localRadius);
         var matrix = default(Matrix4x4);
         matrix.SetTRS(position, Quaternion.identity, s);
         if (currentMatrialColour == null)
         {
-            currentMatrialColour = SolidColorMaterials.NewSolidColorMaterial(new Color(cred, cgreen, cblue, dreeg),
+            currentMatrialColour = SolidColorMaterials.NewSolidColorMaterial(new Color(cred, cgreen, cblue, degree),
                 ShaderDatabase.MetaOverlay);
         }
 

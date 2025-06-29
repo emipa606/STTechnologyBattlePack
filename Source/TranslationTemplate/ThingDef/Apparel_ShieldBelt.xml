@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: 射击精灵 -->
+  <Apparel_MiniTurret.label>射击精灵</Apparel_MiniTurret.label>
+  <!-- EN: 一个小型的悬浮炮塔，会复制你发射出的子弹，提高你的攻击频率 -->
+  <Apparel_MiniTurret.description>一个小型的悬浮炮塔，会复制你发射出的子弹，提高你的攻击频率</Apparel_MiniTurret.description>
+  <!-- EN: 能量护盾 -->
+  <Apparel_PowerShieldBelt.label>能量护盾</Apparel_PowerShieldBelt.label>
+  <!-- EN: ST星云特制的单人护盾，使用者可以抵挡任何攻击，同时使用者可以向外射击。 -->
+  <Apparel_PowerShieldBelt.description>ST星云特制的单人护盾，使用者可以抵挡任何攻击，同时使用者可以向外射击。</Apparel_PowerShieldBelt.description>
+  <!-- EN: 反射护盾 -->
+  <Apparel_ReturnShieldBelt.label>反射护盾</Apparel_ReturnShieldBelt.label>
+  <!-- EN: ST星云特制的单人护盾，可以将外界的子弹弹回，护盾的强度与使用者的研究能力有关 -->
+  <Apparel_ReturnShieldBelt.description>ST星云特制的单人护盾，可以将外界的子弹弹回，护盾的强度与使用者的研究能力有关</Apparel_ReturnShieldBelt.description>
+</LanguageData>

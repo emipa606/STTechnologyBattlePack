@@ -56,7 +56,7 @@ public class Thinkingshield : Apparel
 
     public float Energy { get; private set; }
 
-    public ShieldState ShieldState => ticksToReset > 0 ? ShieldState.Resetting : ShieldState.Active;
+    private ShieldState ShieldState => ticksToReset > 0 ? ShieldState.Resetting : ShieldState.Active;
 
     private bool ShouldDisplay
     {
@@ -90,27 +90,37 @@ public class Thinkingshield : Apparel
         return EnergyMax * ApparelScorePerEnergyMax;
     }
 
-    public override void Tick()
+    protected override void Tick()
     {
         base.Tick();
         if (Wearer == null)
         {
             Energy = 0f;
         }
-        else if (ShieldState == ShieldState.Resetting)
+        else
         {
-            ticksToReset--;
-            if (ticksToReset <= 0)
+            switch (ShieldState)
             {
-                Reset();
-            }
-        }
-        else if (ShieldState == ShieldState.Active)
-        {
-            Energy += EnergyGainPerTick;
-            if (Energy > EnergyMax)
-            {
-                Energy = EnergyMax;
+                case ShieldState.Resetting:
+                {
+                    ticksToReset--;
+                    if (ticksToReset <= 0)
+                    {
+                        reset();
+                    }
+
+                    break;
+                }
+                case ShieldState.Active:
+                {
+                    Energy += EnergyGainPerTick;
+                    if (Energy > EnergyMax)
+                    {
+                        Energy = EnergyMax;
+                    }
+
+                    break;
+                }
             }
         }
     }
@@ -139,15 +149,15 @@ public class Thinkingshield : Apparel
 
         if (Energy < 0f)
         {
-            Break();
+            breakShield();
             return false;
         }
 
-        AbsorbedDamage(dinfo);
+        absorbedDamage(dinfo);
         return true;
     }
 
-    private void AbsorbedDamage(DamageInfo dinfo)
+    private void absorbedDamage(DamageInfo dinfo)
     {
         if (Wearer.skills.GetSkill(SkillDefOf.Intellectual) == null)
         {
@@ -204,7 +214,7 @@ public class Thinkingshield : Apparel
         lastAbsorbDamageTick = Find.TickManager.TicksGame;
     }
 
-    private void Break()
+    private void breakShield()
     {
         SoundDef.Named("EnergyShield_Broken").PlayOneShot(new TargetInfo(Wearer.Position, Wearer.Map));
         FleckMaker.Static(Wearer.TrueCenter(), Wearer.Map, FleckDefOf.ExplosionFlash, 12f);
@@ -224,7 +234,7 @@ public class Thinkingshield : Apparel
         return true;
     }
 
-    private void Reset()
+    private void reset()
     {
         if (Wearer.Spawned)
         {

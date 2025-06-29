@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: EMP手雷腰带 -->
+  <Apparel_EMPGrenadeBelt.label>EMP手雷腰带</Apparel_EMPGrenadeBelt.label>
+  <!-- EN: 一条EMP手雷腰带，可以每隔一段时间提供一个EMP手雷，最多可存储6个，发射的精度与使用者的射击能力有关(需要拥有有3级的射击能力) -->
+  <Apparel_EMPGrenadeBelt.description>一条EMP手雷腰带，可以每隔一段时间提供一个EMP手雷，最多可存储6个，发射的精度与使用者的射击能力有关(需要拥有有3级的射击能力)</Apparel_EMPGrenadeBelt.description>
+  <!-- EN: 手雷腰带 -->
+  <Apparel_FragGrenadeBelt.label>手雷腰带</Apparel_FragGrenadeBelt.label>
+  <!-- EN: 一条手雷腰带，可以每隔一段时间提供一个手雷，最多可存储6个，发射的精度与使用者的射击能力有关(需要拥有有7级的射击能力) -->
+  <Apparel_FragGrenadeBelt.description>一条手雷腰带，可以每隔一段时间提供一个手雷，最多可存储6个，发射的精度与使用者的射击能力有关(需要拥有有7级的射击能力)</Apparel_FragGrenadeBelt.description>
+  <!-- EN: 燃烧瓶腰带 -->
+  <Apparel_MolotovGrenadeBelt.label>燃烧瓶腰带</Apparel_MolotovGrenadeBelt.label>
+  <!-- EN: 一条燃烧瓶腰带，可以每隔一段时间提供一个燃烧瓶，最多可存储6个，发射的精度与使用者的射击能力有关(需要拥有有5级的射击能力) -->
+  <Apparel_MolotovGrenadeBelt.description>一条燃烧瓶腰带，可以每隔一段时间提供一个燃烧瓶，最多可存储6个，发射的精度与使用者的射击能力有关(需要拥有有5级的射击能力)</Apparel_MolotovGrenadeBelt.description>
+</LanguageData>

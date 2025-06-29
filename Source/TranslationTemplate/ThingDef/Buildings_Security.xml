@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: 临时炮塔用枪 -->
+  <Gun_TemporaryTurret.label>临时炮塔用枪</Gun_TemporaryTurret.label>
+  <!-- EN: Jury-rigged gun attached to a turret. -->
+  <Gun_TemporaryTurret.description>Jury-rigged gun attached to a turret.</Gun_TemporaryTurret.description>
+  <!-- EN: 临时炮塔用枪 -->
+  <Gun_TemporaryTurret.verbs.Verb_Shoot.label>临时炮塔用枪</Gun_TemporaryTurret.verbs.Verb_Shoot.label>
+  <!-- EN: 临时炮塔 -->
+  <STTemporaryTurret.label>临时炮塔</STTemporaryTurret.label>
+  <!-- EN: 一个临时炮塔 -->
+  <STTemporaryTurret.description>一个临时炮塔</STTemporaryTurret.description>
+</LanguageData>

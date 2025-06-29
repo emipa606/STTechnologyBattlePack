@@ -29,7 +29,7 @@ internal class Assist : Apparel
         }
     }
 
-    public override void Tick()
+    protected override void Tick()
     {
         base.Tick();
         if (Wearer == null)
@@ -52,7 +52,7 @@ internal class Assist : Apparel
         coolticks = 0f;
     }
 
-    public virtual void ProtectSquare(IntVec3 square)
+    protected virtual void ProtectSquare(IntVec3 square)
     {
         if (!square.InBounds(Wearer.Map))
         {
@@ -76,45 +76,43 @@ internal class Assist : Apparel
             }
 
             if (ReflectionHelper.GetInstanceField(typeof(Projectile), projectile, "launcher") is Pawn pawn &&
-                pawn == Wearer && def != GetTargetEquipmentFromProjectile(projectile))
+                pawn == Wearer && def != getTargetEquipmentFromProjectile(projectile))
             {
-                DoShot(pawn, projectile);
+                doShot(pawn, projectile);
             }
         }
     }
 
-    public bool DoShot(Pawn pawn, Projectile projectile)
+    private void doShot(Pawn pawn, Projectile projectile)
     {
         if (pawn.equipment.Primary == null || pawn.equipment.Primary.def.Verbs.Count == 0 ||
             pawn.equipment.Primary.def.Verbs[0].defaultProjectile == null)
         {
-            return true;
+            return;
         }
 
-        var targetEquipmentFromProjectile = GetTargetEquipmentFromProjectile(projectile);
+        var targetEquipmentFromProjectile = getTargetEquipmentFromProjectile(projectile);
         if (targetEquipmentFromProjectile == null)
         {
-            return true;
+            return;
         }
 
-        var intVec = GetTargetLocationFromProjectile(projectile).ToIntVec3();
+        var intVec = getTargetLocationFromProjectile(projectile).ToIntVec3();
         var projectile2 = (Projectile)GenSpawn.Spawn(
             targetEquipmentFromProjectile.Verbs[0].defaultProjectile, pawn.DrawPos.ToIntVec3(), pawn.Map);
         var intVec2 = new IntVec3((int)Wearer.DrawPos.x + 1, (int)Wearer.DrawPos.y,
             (int)Wearer.DrawPos.z + 1);
         projectile2.Launch(Wearer, intVec2, intVec, projectile.HitFlags, false, this);
-
-        return true;
     }
 
-    public Vector3 GetTargetLocationFromProjectile(Projectile projectile)
+    private static Vector3 getTargetLocationFromProjectile(Projectile projectile)
     {
         return (Vector3)projectile.GetType()
             .GetField("destination", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
             ?.GetValue(projectile)!;
     }
 
-    public ThingDef GetTargetEquipmentFromProjectile(Projectile projectile)
+    private static ThingDef getTargetEquipmentFromProjectile(Projectile projectile)
     {
         return (ThingDef)projectile.GetType()
             .GetField("equipmentDef", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
