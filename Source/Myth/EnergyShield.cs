@@ -28,9 +28,9 @@ public class EnergyShield : Apparel
 
     private readonly int KeepDisplayingTicks = 1000;
 
-    private readonly int lastKeepDisplayTick = -9999;
-
     private readonly int StartingTicksToReset = 3200;
+
+    private readonly int lastKeepDisplayTick = -9999;
 
     private Vector3 impactAngleVect;
 

@@ -13,13 +13,15 @@ internal class GrenadeBelt : Apparel
 
     private readonly TargetingParameters tgp = new();
 
+    private int CooldownTicks = 150;
+
+    private bool Visiblerange;
+
     public float ammo;
 
     private float ammoomax;
 
     private int cooldown;
-
-    private int CooldownTicks = 150;
 
     private ThingDef project;
 
@@ -28,8 +30,6 @@ internal class GrenadeBelt : Apparel
     private float restperticks;
 
     private float tick;
-
-    private bool Visiblerange;
 
     public float ammomax
     {
@@ -61,9 +61,9 @@ internal class GrenadeBelt : Apparel
         }
     }
 
-    public override void SpawnSetup(Map map, bool RE)
+    public override void SpawnSetup(Map map, bool respawningAfterLoad)
     {
-        base.SpawnSetup(map, RE);
+        base.SpawnSetup(map, respawningAfterLoad);
         var comp = GetComp<Comp_GrenadeBelt>();
         if (comp.props is CompProperties_GrenadeBelt belt)
         {

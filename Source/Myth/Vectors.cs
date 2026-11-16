@@ -4,7 +4,7 @@ using Verse;
 
 namespace Myth;
 
-public class Vectors
+public static class Vectors
 {
     public static double EuclDist(IntVec3 a, IntVec3 b)
     {

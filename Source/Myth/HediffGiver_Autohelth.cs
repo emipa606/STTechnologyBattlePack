@@ -21,7 +21,7 @@ internal class HediffGiver_Autohelth : HediffGiver
     private int tick;
     public int tickmtb;
 
-    public override void OnIntervalPassed(Pawn pawn, Hediff hediffDef)
+    public override void OnIntervalPassed(Pawn pawn, Hediff cause)
     {
         Log.Message(hediff.LabelCap);
         if (pawn == null || pawn.Dead || pawn.Map == null)
@@ -46,15 +46,13 @@ internal class HediffGiver_Autohelth : HediffGiver
                             (pawn.health.hediffSet.pawn.health.hediffSet.hediffs[i] as Hediff_Injury)?.Heal(2f);
                         }
                     }
-                    else if (cure)
+                    else if (cure &&
+                             pawn.health.hediffSet.hediffs[i] is HediffWithComps hediffWithComps &&
+                             string.Compare(pawn.health.hediffSet.hediffs[i].def.defName, cause.def.defName,
+                                 StringComparison.Ordinal) != 0 &&
+                             pawn.health.hediffSet.hediffs[i].def.isBad)
                     {
-                        if (pawn.health.hediffSet.hediffs[i] is HediffWithComps hediffWithComps &&
-                            string.Compare(pawn.health.hediffSet.hediffs[i].def.defName, hediffDef.def.defName,
-                                StringComparison.Ordinal) != 0 &&
-                            pawn.health.hediffSet.hediffs[i].def.isBad)
-                        {
-                            pawn.health.RemoveHediff(hediffWithComps);
-                        }
+                        pawn.health.RemoveHediff(hediffWithComps);
                     }
                 }
 

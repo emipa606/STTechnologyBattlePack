@@ -9,7 +9,7 @@ internal class MentalState_Remove : HediffGiver
 
     public float recoveryMtbDays;
 
-    public override void OnIntervalPassed(Pawn pawn, Hediff hediffDef)
+    public override void OnIntervalPassed(Pawn pawn, Hediff cause)
     {
         if (pawn.MentalStateDef == null)
         {

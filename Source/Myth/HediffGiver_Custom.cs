@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Verse;
 
 namespace Myth;
@@ -64,12 +65,9 @@ internal class HediffGiver_Custom : HediffGiver
             var num6 = Convert.ToInt32(severity);
             foreach (var allPart in pawn.RaceProps.body.AllParts)
             {
-                foreach (var item in bodyPartsToAffect)
+                foreach (var item in bodyPartsToAffect.Where(item => allPart.def.LabelCap.RawText.Equals(item)))
                 {
-                    if (allPart.def.LabelCap.RawText.Equals(item))
-                    {
-                        pawn.TakeDamage(new DamageInfo(def, num6, 0, -1f, null, allPart));
-                    }
+                    pawn.TakeDamage(new DamageInfo(def, num6, 0, -1f, null, allPart));
                 }
             }
         }

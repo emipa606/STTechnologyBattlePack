@@ -5,9 +5,9 @@ namespace Myth;
 [StaticConstructorOnStartup]
 internal class HediffGiver_Ambrosia : HediffGiver
 {
-    public override void OnIntervalPassed(Pawn pawn, Hediff hediffDef)
+    public override void OnIntervalPassed(Pawn pawn, Hediff cause)
     {
-        if (hediffDef != null && pawn.ageTracker.AgeBiologicalYears > 20)
+        if (cause != null && pawn.ageTracker.AgeBiologicalYears > 20)
         {
             pawn.ageTracker.AgeBiologicalTicks -= 3600000;
         }

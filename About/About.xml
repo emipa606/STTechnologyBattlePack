@@ -9,10 +9,11 @@
     <li>1.4</li>
     <li>1.5</li>
     <li>1.6</li>
+    <li>1.7</li>
   </supportedVersions>
   <modDependencies />
   <loadAfter />
-  <description>[img]https://i.imgur.com/buuPQel.png[/img]
+  <description>[img]https://img.litet.net/logos/Info.png[/img]
 Update of FD.FLY;LingLuos mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=863786159
 
@@ -25,20 +26,20 @@ A collection of the latest black technologies in the ST zone, including:
 5. Energy shield, used as a shield, passively opened, can resist melee shields, while allowing you to use long-range weapons
 6. Shooting elves, used as a belt, passively turned on, the elves will copy your bullets when you shoot, and double your firepower
 
-[img]https://i.imgur.com/pufA0kM.png[/img]
+[img]https://img.litet.net/logos/Notice.png[/img]
 
 [table]
     [tr]
-        [td][url=https://dsc.gg/mlie][img]https://i.imgur.com/zdzzBrc.png[/img][/url][/td]
-        [td][url=https://github.com/emipa606/STTechnologyBattlePack][img]https://i.imgur.com/kTkpTOE.png[/img][/url][/td]
+        [td][url=https://discord.gg/h5TY6DA][img]https://img.litet.net/logos/Discord.png[/img][/url][/td]
+        [td][url=https://github.com/emipa606/STTechnologyBattlePack][img]https://img.litet.net/logos/Github.png[/img][/url][/td]
     [/tr]
     [tr]
-        [td][img]https://i.imgur.com/WjDSfUn.png[/img][/td]
-        [td][img]https://i.imgur.com/Be8E2qJ.png[/img][/td]
+        [td][img]https://img.litet.net/logos/SafeToAdd.png[/img][/td]
+        [td][img]https://img.litet.net/logos/RemoveMayWork.png[/img][/td]
     [/tr]
 [/table]
 	
-[img]https://i.imgur.com/Z4GOv8H.png[/img]
+[img]https://img.litet.net/logos/OriginalDescription.png[/img]
 ST星区最新黑科技的集合，包含：
 1.群体立场，作为挂件使用，主动开启，消耗充能为周围友军或敌军提供加护或异常状态
 2.群体护盾，作为挂件使用，主动开启，庇护人物周围的友军
@@ -48,17 +49,17 @@ ST星区最新黑科技的集合，包含：
 6.射击精灵，作为挂件使用，被动开启，精灵会在你射击的时复制你的弹，让你的火力加倍
 request for english translate
 
-[img]https://i.imgur.com/PwoNOj4.png[/img]
+[img]https://img.litet.net/logos/ReportingIssues.png[/img]
 [list]
 [*] See if the the error persists if you just have this mod and its requirements active.
 [*] If not, try adding your other mods until it happens again.
-[*] Post your error-log using [url=https://steamcommunity.com/workshop/filedetails/?id=818773962]HugsLib[/url] or the standalone [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404]Uploader[/url] and command Ctrl+F12
+[*] Always post your log using the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404]Log Uploader[/url]
 [*] For best support, please use the Discord-channel for error-reporting.
 [*] Do not report errors by making a discussion-thread, I get no notification of that.
 [*] If you have the solution for a problem, please post it to the GitHub repository.
 [*] Use [url=https://github.com/RimSort/RimSort/releases/latest]RimSort[/url] to sort your mods
 [/list] 
 
-[url=https://steamcommunity.com/sharedfiles/filedetails/changelog/2613655331][img]https://img.shields.io/github/v/release/emipa606/STTechnologyBattlePack?label=latest%20version&amp;style=plastic&amp;color=9f1111&amp;labelColor=black[/img][/url] | tags:  energy shield</description>
-  <modVersion IgnoreIfNoMatchingField="True">1.6.0</modVersion>
+[url=https://steamcommunity.com/sharedfiles/filedetails/changelog/2613655331][img]https://img.shields.io/github/v/release/emipa606/STTechnologyBattlePack?label=latest%20version&amp;style=plastic&amp;color=9f1111&amp;labelColor=black[/img][/url] | energy shield</description>
+  <modVersion IgnoreIfNoMatchingField="True">1.7.0</modVersion>
 </ModMetaData>

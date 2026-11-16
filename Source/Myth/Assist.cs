@@ -15,9 +15,9 @@ internal class Assist : Apparel
 
     private bool isactive;
 
-    public override void SpawnSetup(Map map, bool RE)
+    public override void SpawnSetup(Map map, bool respawningAfterLoad)
     {
-        base.SpawnSetup(map, RE);
+        base.SpawnSetup(map, respawningAfterLoad);
         var comp = GetComp<Comp_Assist>();
         if (comp.props is CompProperties_Assist assist)
         {

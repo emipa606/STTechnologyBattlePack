@@ -1,6 +1,6 @@
 # [ST科技战斗包 - Technology Battle Pack (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=2613655331)
 
-![Image](https://i.imgur.com/buuPQel.png)
+![Image](https://img.litet.net/logos/Info.png)
 
 Update of FD.FLY;LingLuos mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=863786159
@@ -14,9 +14,9 @@ A collection of the latest black technologies in the ST zone, including:
 5. Energy shield, used as a shield, passively opened, can resist melee shields, while allowing you to use long-range weapons
 6. Shooting elves, used as a belt, passively turned on, the elves will copy your bullets when you shoot, and double your firepower
 
-![Image](https://i.imgur.com/pufA0kM.png)
+![Image](https://img.litet.net/logos/Notice.png)
 	
-![Image](https://i.imgur.com/Z4GOv8H.png)
+![Image](https://img.litet.net/logos/OriginalDescription.png)
 
 ST星区最新黑科技的集合，包含：
 1.群体立场，作为挂件使用，主动开启，消耗充能为周围友军或敌军提供加护或异常状态
@@ -27,13 +27,13 @@ ST星区最新黑科技的集合，包含：
 6.射击精灵，作为挂件使用，被动开启，精灵会在你射击的时复制你的弹，让你的火力加倍
 request for english translate
 
-![Image](https://i.imgur.com/PwoNOj4.png)
+![Image](https://img.litet.net/logos/ReportingIssues.png)
 
 
 
 -  See if the the error persists if you just have this mod and its requirements active.
 -  If not, try adding your other mods until it happens again.
--  Post your error-log using [HugsLib](https://steamcommunity.com/workshop/filedetails/?id=818773962) or the standalone [Uploader](https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404) and command Ctrl+F12
+-  Always post your log using the [Log Uploader](https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404)
 -  For best support, please use the Discord-channel for error-reporting.
 -  Do not report errors by making a discussion-thread, I get no notification of that.
 -  If you have the solution for a problem, please post it to the GitHub repository.
@@ -41,4 +41,4 @@ request for english translate
 
  
 
-[![Image](https://img.shields.io/github/v/release/emipa606/STTechnologyBattlePack?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2613655331) | tags:  energy shield
+[![Image](https://img.shields.io/github/v/release/emipa606/STTechnologyBattlePack?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2613655331) | energy shield

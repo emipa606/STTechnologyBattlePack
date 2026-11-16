@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using RimWorld;
 using UnityEngine;
@@ -14,6 +15,10 @@ internal class MassShield : Apparel
         MaterialPool.MatFrom("Things/Projectile/massshield", MatBases.LightOverlay);
 
     private static readonly Texture2D SWITCH = ContentFinder<Texture2D>.Get("UI/MassShieldSwitch");
+
+    private long TickCount;
+
+    private bool Visiblerange;
 
     private List<IntVec3> cellstoprotect;
     private float currentAngle = Random.Range(0f, 360f);
@@ -34,15 +39,11 @@ internal class MassShield : Apparel
 
     private int shieldstate;
 
-    private long TickCount;
-
     private float ticktoblock = 2f;
 
     private float ticktorest = -1f;
 
     private float transparency = Random.Range(10f, 90f);
-
-    private bool Visiblerange;
 
     public float pointmax
     {
@@ -72,9 +73,9 @@ internal class MassShield : Apparel
         }
     }
 
-    public override void SpawnSetup(Map map, bool RE)
+    public override void SpawnSetup(Map map, bool respawningAfterLoad)
     {
-        base.SpawnSetup(map, RE);
+        base.SpawnSetup(map, respawningAfterLoad);
         var comp = GetComp<Comp_MassShield>();
         if (comp.props is CompProperties_MassShield shield)
         {
@@ -169,12 +170,10 @@ internal class MassShield : Apparel
     private void reCalibrateCells()
     {
         cellstoprotect = [];
-        foreach (var item in GenRadial.RadialCellsAround(Wearer.Position, range, false))
+        foreach (var item in GenRadial.RadialCellsAround(Wearer.Position, range, false)
+                     .Where(item => Vectors.EuclDist(item, Wearer.Position) >= range - 1.5f))
         {
-            if (Vectors.EuclDist(item, Wearer.Position) >= range - 1.5f)
-            {
-                cellstoprotect.Add(item);
-            }
+            cellstoprotect.Add(item);
         }
     }
 

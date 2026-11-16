@@ -16,6 +16,8 @@ public class Building_Humidifier : Building
 
     private static readonly Texture2D UIOFF = ContentFinder<Texture2D>.Get("UI/OFF");
 
+    private CompPowerTrader PowerValue;
+
     private float areasize;
 
     private float areasize1;
@@ -40,14 +42,12 @@ public class Building_Humidifier : Building
 
     private bool isshow;
 
-    private CompPowerTrader PowerValue;
-
     private float radius;
 
-    public override void SpawnSetup(Map map, bool RE)
+    public override void SpawnSetup(Map map, bool respawningAfterLoad)
     {
         PowerValue = GetComp<CompPowerTrader>();
-        base.SpawnSetup(map, RE);
+        base.SpawnSetup(map, respawningAfterLoad);
         var comp = GetComp<Comp_HumidifierBuilding>();
         if (comp.props is CompProperties_HumidifierBuilding building)
         {
@@ -151,20 +151,14 @@ public class Building_Humidifier : Building
         }
 
         var list = new List<Pawn>();
-        foreach (var pawn in allPawnsSpawned)
+        foreach (var pawn in allPawnsSpawned.Where(p => p.Position.InHorDistOf(Position, radius)))
         {
-            if (pawn.Position.InHorDistOf(Position, radius))
-            {
-                list.Add(pawn);
-            }
+            list.Add(pawn);
         }
 
-        foreach (var pawn in list)
+        foreach (var pawn in list.Where(p => p is { Dead: false }))
         {
-            if (pawn is { Dead: false })
-            {
-                HealthUtility.AdjustSeverity(pawn, hediffDef, 0.1f);
-            }
+            HealthUtility.AdjustSeverity(pawn, hediffDef, 0.1f);
         }
     }
 

@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace Myth;
 
-public class ReflectionHelper
+public static class ReflectionHelper
 {
     public static object GetInstanceField(Type type, object instance, string fieldName)
     {

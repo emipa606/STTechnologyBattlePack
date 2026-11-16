@@ -3,4 +3,24 @@
     <BuildType Name="Release" />
   </Configurations>
   <Project Path="Myth/Myth.csproj" />
+  <Folder Name="/.github/">
+    <File Path="../.github/copilot-instructions.md" />
+  </Folder>
+  <Folder Name="/XML/1.7/Defs/ThingDefs/">
+    <File Path="../1.7/Defs/ThingDefs/Apparel_DomainBelt.xml" />
+    <File Path="../1.7/Defs/ThingDefs/Apparel_GrenadeBelt.xml" />
+    <File Path="../1.7/Defs/ThingDefs/Apparel_GunBelt.xml" />
+    <File Path="../1.7/Defs/ThingDefs/Apparel_ShieldBelt.xml" />
+    <File Path="../1.7/Defs/ThingDefs/Apparel_TeamShieldBelt.xml" />
+    <File Path="../1.7/Defs/ThingDefs/Weapons_RangedWeapon.xml" />
+  </Folder>
+  <Folder Name="/XML/About/">
+    <File Path="../About/about.xml" />
+  </Folder>
+  <Folder Name="/XML/1.7/Defs/">
+    <File Path="../1.7/Defs/Buildings_Security.xml" />
+    <File Path="../1.7/Defs/Droppod.xml" />
+    <File Path="../1.7/Defs/Hediff.xml" />
+    <File Path="../1.7/Defs/Research.xml" />
+  </Folder>
 </Solution>

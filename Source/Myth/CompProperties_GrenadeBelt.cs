@@ -4,9 +4,8 @@ namespace Myth;
 
 public class CompProperties_GrenadeBelt : CompProperties
 {
-    public float armo;
-
     public int CooldownTicks;
+    public float armo;
     public ThingDef project;
 
     public float range;

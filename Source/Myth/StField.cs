@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -14,6 +15,8 @@ internal class StField : Apparel
     private static readonly Texture2D UIOFF = ContentFinder<Texture2D>.Get("UI/FieldOFF");
 
     private static readonly Texture2D UION = ContentFinder<Texture2D>.Get("UI/FieldON");
+
+    private bool Visiblerange;
 
     private HediffDef buff;
     private float currentAngle = Random.Range(0f, 360f);
@@ -34,8 +37,6 @@ internal class StField : Apparel
 
     private float transparency = Random.Range(10f, 90f);
 
-    private bool Visiblerange;
-
     public float Pointmax
     {
         get
@@ -48,11 +49,11 @@ internal class StField : Apparel
             var comp = GetComp<Comp_StField>();
             if (comp.props is CompProperties_StField field)
             {
-                buff = field.buff;
-                forEnemy = field.forEnemy;
-                range = field.range;
-                pointmaxo = field.pointmax;
-                recoverypointpercheck = field.recoverypointpercheck;
+                buff = @field.buff;
+                forEnemy = @field.forEnemy;
+                range = @field.range;
+                pointmaxo = @field.pointmax;
+                recoverypointpercheck = @field.recoverypointpercheck;
             }
             else
             {
@@ -63,9 +64,9 @@ internal class StField : Apparel
         }
     }
 
-    public override void SpawnSetup(Map map, bool RE)
+    public override void SpawnSetup(Map map, bool respawningAfterLoad)
     {
-        base.SpawnSetup(map, RE);
+        base.SpawnSetup(map, respawningAfterLoad);
         var comp = GetComp<Comp_StField>();
         if (comp.props is CompProperties_StField field)
         {
@@ -149,24 +150,18 @@ internal class StField : Apparel
         var list = new List<Pawn>();
         if (forEnemy)
         {
-            foreach (var pawn in allPawnsSpawned)
+            foreach (var pawn in allPawnsSpawned.Where(pawn => pawn.Position.InHorDistOf(Wearer.Position, range) &&
+                                                               pawn.Faction is { IsPlayer: false }))
             {
-                if (pawn.Position.InHorDistOf(Wearer.Position, range) &&
-                    pawn.Faction is { IsPlayer: false })
-                {
-                    list.Add(pawn);
-                }
+                list.Add(pawn);
             }
         }
         else
         {
-            foreach (var pawn in allPawnsSpawned)
+            foreach (var pawn in allPawnsSpawned.Where(pawn => pawn.Position.InHorDistOf(Wearer.Position, range) &&
+                                                               pawn.Faction is { IsPlayer: true }))
             {
-                if (pawn.Position.InHorDistOf(Wearer.Position, range) &&
-                    pawn.Faction is { IsPlayer: true })
-                {
-                    list.Add(pawn);
-                }
+                list.Add(pawn);
             }
         }
 
